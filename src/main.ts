@@ -4,3 +4,6 @@ import { AppComponent } from './app/app.component';
 
 bootstrapApplication(AppComponent, appConfig)
   .catch((err) => console.error(err));
+
+
+  // hier wird die Anwendung "erzeugt", mit app component ganz oben

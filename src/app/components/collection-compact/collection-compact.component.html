@@ -1,0 +1,19 @@
+<a [routerLink]="['/collection', collection().id]" class="compact">
+    <div class="header">
+        <p>{{collection().title}}</p>
+        <span><lucide-icon [img]="LucideLibraryBig" />{{collection().cardCount}}</span>
+    </div>
+    <p class="desc">{{collection().description}}</p>
+    <div class="footer">
+        <p>von {{collection().user.name}}</p>
+        <div class="tags">
+
+            @for (category of collection().categories; track $index) {
+                <div>
+                    <p>{{category.value}}</p>
+                </div>
+            }
+        </div>
+    </div>
+
+</a>

@@ -1,0 +1,23 @@
+<header class="header">
+            <nav class="nav">
+                <a routerLink="/">
+                    <img src="/logo.png" alt='logo' />
+                </a>
+                <app-search-bar/>
+                <div class="links">
+                    <a routerLink="" class="create">
+                       <lucide-icon [img]="plusIcon"/>
+                        Erstellen
+                    </a>
+
+                    <!-- {loginInfo &&
+                    <a routerLink="{`user/${loginInfo.userId}`}"><p>My Account</p></a>
+                }
+                {loginInfo ? <p onClick={() => setLoginInfo(false)}>Sign Out</p>  : <a routerLink="{"/sign-in"}">
+                        <p>Sign In</p>
+                </a>} -->
+                <a routerLink="/sign-in"><p>Sign In</p></a>
+                   
+                </div>
+            </nav>
+        </header>

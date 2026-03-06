@@ -1,0 +1,15 @@
+<div class="card" (click)="flip()">
+    <div class="inner" [class.flip]="showBack()">
+        <div class="front">
+            <p>{{card().front}}</p>
+        </div>
+        <div class="back">
+            <p>{{card().back}}</p>
+        </div>
+    </div>
+
+</div>
+
+<div class="notes">
+    <p>{{card().notes}}</p>
+</div>

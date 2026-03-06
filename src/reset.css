@@ -1,0 +1,129 @@
+*,
+*::after,
+*::before{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root{
+    font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
+    /* default-browser font-size, 
+    choose any size in px, em or rem */
+    line-height: 1.5;
+    /* form elements, strong, em, ... */
+    scroll-behavior: smooth;
+    /* no jumping for links */
+    scroll-padding-top: 4rem;
+    /* don't scroll to the very top, in case of fixed oder sticky items */
+    hanging-punctuation: first last;
+    /* Look at quotation marks and the like.
+    Webkit only */
+
+    --border-radius: 0.5rem;
+
+    --primary-color: white;
+    --secondary-color: #2f7560;
+    --accent-color: #93C2BB;
+    --accent-red: #de5d3a;
+    --success-color: #449F1E;
+    --body-background: #F7F7F7;
+    --border-color: rgb(232, 232, 232);
+
+    --width: 80rem;
+
+}
+
+html {
+    scroll-behavior: smooth;
+  }
+
+body{
+    /* 100% of viewport height */
+    min-height: 100vh;
+}
+
+/* font-size for all font elements in relation */
+article,
+section,
+aside
+ul,
+ol,
+table,
+form{
+    font-size: 1rem;
+}
+
+/* font-size in rem for headings */
+h1 { font-size: 2rem;}
+h2 { font-size: 1.5rem;}
+h3 { font-size: 1.17rem;}
+h4 { font-size: 1.00rem;}
+h5 { font-size: 0.83rem;}
+h6 { font-size: 0.67rem;}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6{
+    text-wrap: balance;
+    /* short text passages, up to 3 lines */
+}
+
+p,
+li{
+    max-width: 60ch;
+    text-wrap: pretty;
+    /* no orphans in chromium */
+}
+
+img,
+picture,
+svg,
+video{
+    max-width: 100%;
+    /* no overflow */
+    height: auto;
+    /* keep aspect-ratio */
+    display: block;
+    font-style: italic;
+    /* for alt text to be offset */
+}
+
+ul,
+ol{
+    list-style: none;
+}
+
+table{
+    border-collapse: collapse;
+}
+
+td,
+th{
+    border: 1px solid;
+}
+
+a,
+button{
+    cursor: pointer;
+}
+
+/* a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+} */
+
+a {
+    color: inherit;
+    text-decoration: inherit;
+}
+
+/* angeben dass ich das reset von woanders habe */

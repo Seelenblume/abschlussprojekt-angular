@@ -1,0 +1,34 @@
+.carousel {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  padding-bottom: 10rem;
+  border: 2px solid salmon ;
+}
+
+
+.cards {
+  display: flex;
+  transition: transform 0.2s ease;
+  width: 100%;
+  height: 100%;
+}
+
+.card {
+  min-width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.arrows {
+  position: absolute;
+  bottom: 0;
+}

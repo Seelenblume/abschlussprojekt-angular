@@ -1,0 +1,19 @@
+<div class="carousel">
+    <div class="cards" [style.transform]="'translateX(-' + (currentIndex() * 100) + '%)'">
+        @for (card of collection().cards; track $index) {
+        <div class="card">
+            <app-card [card]="card"></app-card>
+        </div>
+        }
+    </div>
+
+    <div class="arrows">
+        <button (click)="setCurrentIndex(currentIndex() - 1)" [disabled]="currentIndex() === 0">
+            <lucide-icon [img]="lucideLeft" />
+        </button>
+        <button (click)="setCurrentIndex(currentIndex() + 1)" [disabled]="currentIndex() == collection().cards.length - 1">
+            <lucide-icon [img]="lucideRight" />
+
+        </button>
+    </div>
+</div>

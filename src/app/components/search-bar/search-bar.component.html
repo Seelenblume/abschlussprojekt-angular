@@ -1,0 +1,9 @@
+<div>
+    <form (submit)="onSubmit($event)" class="searchbar">
+        <input type="search" placeholder='Search collection...' name="search" [(ngModel)]="query" />
+        <button type="submit">
+            <lucide-icon [img]="searchIcon"/>
+        </button>
+    </form>
+
+</div>

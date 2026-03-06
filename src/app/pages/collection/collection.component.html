@@ -1,0 +1,30 @@
+@if (collection) {
+    <div>
+    <div class="header">
+        <div class="title">
+            <h1>{{collection.title}}</h1>
+            <span></span>
+        </div>
+    </div>
+    <div>
+        @for (category of collection.categories; track $index) {
+        <div>
+            {{category.label}}
+        </div>
+        }
+    </div>
+    <app-carousel [collection]="collection"></app-carousel>
+    <div class="info">
+        <div class="desc">
+            {{collection.description}}
+        </div>
+        <div class="profile">
+            <h3>Creator</h3>
+            <div class="name">
+                <img src="../src/assets/react.svg" />
+                <a [routerLink]="['/user', collection.user.id]">{{collection.user.name}}</a>
+            </div>
+        </div>
+    </div>
+</div>
+}
