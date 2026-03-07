@@ -1,1 +1,37 @@
-<app-auth-form [type]="'sign-in'">
+<div class="auth">
+    <form [formGroup]="authForm" (ngSubmit)="onSubmit()">
+        <h2>
+            Sign In
+        </h2>
+        <div>
+            <div class="inputGroup">
+                <label htmlFor='email'>E-Mail</label>
+                <input placeholder='E-mail' id='email' formControlName="email" />
+                    @if (email?.invalid && (email?.dirty || email?.touched)) {
+                        @if (email?.hasError('required')) {
+                            <span class="errorMessage">This field is required</span>
+                        }
+                        @if (email?.errors?.['email']; as err) {
+                            <span class="errorMessage">Must be a valid E-Mail</span>
+                        }
+                    }            
+            </div>
+
+
+            <div class="inputGroup">
+                <label htmlFor='password'>Password</label>
+                <input placeholder='password' formControlName="password" type="password"/>
+                    @if (password?.invalid && (password?.dirty || password?.touched)) {
+                        @if (password?.hasError('required')) {
+                            <span class="errorMessage">This field is required</span>
+                        }
+                         @if (password?.errors?.['maxlength']; as err) {
+                            <span class="errorMessage">Maximum of {{err.requiredLength}} characters</span>
+                        }
+                    } 
+            </div>
+        </div>
+        <p>No account yet?<a [routerLink]="['/sign-up']">Sign Up</a></p> 
+        <button type='submit'>Submit</button>
+    </form>
+</div>

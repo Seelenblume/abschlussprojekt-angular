@@ -1,0 +1,22 @@
+<div>
+    <div class="cardsList">
+         @if (showModal() && selectedCard()) {
+            <app-card-modal (closeModal)="setShowModal($event)"></app-card-modal>
+            }
+        @for (card of collection.cards; track $index) {
+
+        <div>
+           
+            <!-- {showModal && <CardModal update onModalClose={() => setShowModal(false)} onAddCard={(front, back, notes) => handleUpdateCard(card.id, front, back, notes)} />} -->
+            <div class="card">
+                <app-card-small [card]="card"></app-card-small>
+                <button (click)="onEdit(true, card)">Edit Card</button>
+                <!-- <CardSmall card={card} /> -->
+                <!-- <button onClick={() => setShowModal(true)}>Edit Card</button> -->
+            </div>
+        </div>
+        }
+
+
+    </div>
+</div>

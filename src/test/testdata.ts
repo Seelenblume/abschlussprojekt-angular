@@ -396,31 +396,31 @@ export const testCategories: Category[] = [
         value: "Category value"
     },
     {
-        label: "CATEGORY_LABEL",
-        value: "Category value"
+        label: "wofdvj",
+        value: "wofdvj"
     },
     {
-        label: "CATEGORY_LABEL",
-        value: "Category value"
+        label: "VARKA",
+        value: "Varka"
     },
     {
-        label: "CATEGORY_LABEL",
-        value: "Category value"
+        label: "NICOLE",
+        value: "Nicole"
     },
     {
-        label: "CATEGORY_LABEL",
-        value: "Category value"
+        label: "ALICE",
+        value: "Alice"
     },
     {
-        label: "CATEGORY_LABEL",
-        value: "Category value"
+        label: "KLEE",
+        value: "Klee"
     },
     {
-        label: "CATEGORY_LABEL",
-        value: "Category value"
+        label: "RHINEDOTTIR",
+        value: "Rhinedottir"
     },
     {
-        label: "CATEGORY_LABEL",
-        value: "Category value"
+        label: "NIBELUNG",
+        value: "Nibelung"
     },
 ]

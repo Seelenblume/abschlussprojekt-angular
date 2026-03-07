@@ -1,0 +1,57 @@
+.whole {
+    form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: start;
+        width: 100%;
+        margin: 2rem auto;
+        gap: 2rem;
+
+        .inputGroup {
+            display: flex;
+            flex-direction: column;
+            justify-content: start;
+            align-items: start;
+            margin: auto;
+            width: 80%;
+        }
+
+         .inputLocal {
+                width: 30%;
+                height: 2rem;
+                padding: 0.5rem;
+            }
+
+            .textarea {
+                width: 100%;
+                height: 10rem;
+                resize: none;
+            }
+
+        .buttons {
+            display: flex;
+            flex-direction: row;
+            gap: 1rem;
+
+            .submit {
+                border-color: green;
+            }
+
+            .cancel {
+                background-color: var(--accent-red);
+            }
+        }
+
+    }
+}
+
+.select {
+    width: 40%;
+    text-align: left;
+}
+
+.mat-mdc-form-field {
+  width: 40%;
+  margin: 1em 0;
+}

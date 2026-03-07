@@ -1,0 +1,46 @@
+<div>
+    <div class="back"></div>
+    <div class="addCard">
+        <div class="header">
+
+            <h3>Karte </h3>
+            <button (click)="onCloseModal()">
+                <lucide-icon [img]="lucideX"></lucide-icon>
+            </button>
+
+        </div>
+        <form (submit)="onSubmit()">
+                    <div class="actions">
+                        <div class="inputGroup">
+
+                            <label>Front</label>
+                            <input />
+                            <!-- {errors.front && <span>{errors.front.message}</span>} -->
+                        </div>
+
+                        <div class="inputGroup">
+
+                            <label>Back</label>
+                            <input />
+                            <!-- {errors.back && <span>{errors.back.message}</span>} -->
+
+                        </div>
+
+                    </div>
+
+                    <div>
+                        <label>Notes (optional)</label>
+                        <textarea class="textarea"></textarea>
+                    </div>
+                    <div>
+                        <button type="submit">
+                            Hinzufügen
+                        </button>
+                        <button type="button" (click)="onCloseModal()">
+                            Abbrechen
+                        </button>
+                    </div>
+                </form>
+    </div>
+
+</div>

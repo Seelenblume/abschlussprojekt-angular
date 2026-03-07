@@ -15,7 +15,7 @@ import { AsyncPipe } from '@angular/common';
 })
 export class CollectionComponent implements OnInit {
   collection: CardCollection | null = null;
-  @Input() collectionId!: string
+  // Hier muss ich irgendwie auf route parameter zugreifen
 
   constructor(private service: CardsApiService) { }
 

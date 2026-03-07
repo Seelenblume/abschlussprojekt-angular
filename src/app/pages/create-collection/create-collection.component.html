@@ -1,0 +1,68 @@
+<div class="whole">
+    <h2>Create a Collection</h2>
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="inputGroup">
+          <label htmlFor='title'>Title of your collection</label>
+          <input id='title' formControlName="title" placeholder='Enter Title...' class="inputLocal" />
+           @if (title?.invalid && (title?.dirty || title?.touched)) {
+                @if (title?.hasError('required')) {
+                    <span class="errorMessage">This field is required</span>
+                }
+                    @if (title?.errors?.['maxlength']; as err) {
+                    <span class="errorMessage">Maximum of {{err.requiredLength}} characters</span>
+                }
+            } 
+        </div>
+        <div class="inputGroup">
+          <label htmlFor='desc'>Description</label>
+          <textarea id='desc' formControlName="desc" class="textarea"></textarea>
+             @if (desc?.invalid && (desc?.dirty || desc?.touched)) {
+                    @if (desc?.errors?.['maxlength']; as err) {
+                    <span class="errorMessage">Maximum of {{err.requiredLength}} characters</span>
+                }
+            }
+
+        </div>
+
+        <div class="inputGroup">
+          <label htmlFor='category'>Categories</label>
+          <!-- multiselect only possible with ui library,
+                angular team provides material ui, which can be installed via angular cli
+                but multiselect is not provided, I used different library      
+          -->
+            <mat-form-field>
+  <mat-label>Select Food</mat-label>
+  <!-- https://ng-matero.github.io/extensions/components/select/overview -->
+
+    <!-- <mtx-select
+            [items]="categories"
+            bindLabel="name"
+            bindValue="id"
+            [multiple]="true"
+            [(ngModel)]="food"
+            appendTo="app-select-overview"
+        ></mtx-select> -->
+
+        <mtx-select
+            [items]="categories"
+            bindLabel="label"
+            bindValue="value"
+            [multiple]="true"
+            appendTo="app-create-collection"
+        ></mtx-select>
+
+        <mat-hint>Choose your favorite food</mat-hint>
+        <mat-error>Please choose a food</mat-error>
+        </mat-form-field>
+        </div>
+
+        <div class="buttons">
+          <button type='submit' class="submit">
+            Erstellen
+          </button>
+          <button type='reset' class="cancel" (click)="onBack()">
+            Abbrechen
+          </button>
+        </div>
+      </form>
+</div>
