@@ -19,7 +19,7 @@ export class CardModalComponent {
   lucideX = LucideX
 
   closeModal = output<boolean>()
-  addCard = output<CardOutput>()
+  addCard = output<CardForm>()
 
   onCloseModal() {
     this.closeModal.emit(false)
@@ -29,10 +29,9 @@ export class CardModalComponent {
     if (this.form.invalid) {
       this.form.markAllAsTouched()
     }
-    
+
     console.log("submit");
-    this.addCard.emit({
-    })
+    this.addCard.emit(this.form.getRawValue())
   }
 
     get front() {
@@ -48,8 +47,8 @@ export class CardModalComponent {
   }
 }
 
-type CardOutput = {
-  front: string,
-  back: string,
-  notes: string
+type CardForm = {
+  front: string | null
+  back: string | null
+  notes: string | null
 }

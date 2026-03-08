@@ -1,7 +1,8 @@
 <div>
     <div class="cardsList">
-         @if (showModal() && selectedCard()) {
-            <app-card-modal (closeModal)="setShowModal($event)"></app-card-modal>
+         @if (showModal() && selectedCard(); as card) {
+            <app-card-modal (closeModal)="setShowModal($event)" 
+            (addCard)="handleUpdateCard(card.id, $event.front, $event.back, $event.notes)"></app-card-modal>
             }
         @for (card of collection.cards; track $index) {
 

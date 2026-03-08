@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, signal } from '@angular/core';
 import { CardsApiService } from '../../services/cards-api.service';
 import { CardCollection } from '../../../models/card';
 import { testCardCollections } from '../../../test/testdata';
-import { RouterLink } from "@angular/router";
+import { ActivatedRoute, RouterLink } from "@angular/router";
 import { CarouselComponent } from '../../components/carousel/carousel.component';
 import { AsyncPipe } from '@angular/common';
 
@@ -14,20 +14,28 @@ import { AsyncPipe } from '@angular/common';
   styleUrl: './collection.component.css'
 })
 export class CollectionComponent implements OnInit {
-  collection: CardCollection | null = null;
+  collection = signal<CardCollection | null>(null)
   // Hier muss ich irgendwie auf route parameter zugreifen
 
-  constructor(private service: CardsApiService) { }
+  collectionId: string | null;
+
+  constructor(private service: CardsApiService, route: ActivatedRoute) { 
+    this.collectionId = route.snapshot.paramMap.get('collectionId');
+  }
 
   ngOnInit() {
-    // this.service.getCardCollectionById(this.collectionId).subscribe(
-    //   (data) => {
-    //     this.collection = data
-    //   },
-    //   (error) => {
-    //     console.log("Error");
-    //   }
-    // )
-    this.collection = testCardCollections[1]
+    if (this.collectionId) {
+this.service.getCardCollectionById(this.collectionId)
+    .subscribe({
+      next: (data) => {
+        this.collection.set(data)
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
+    }
+    
+    this.collection.set(testCardCollections[1]) 
   }
 }
