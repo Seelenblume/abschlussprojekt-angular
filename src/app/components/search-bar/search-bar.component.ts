@@ -15,6 +15,8 @@ export class SearchBarComponent {
 
   onSubmit(event: Event) {
     event.preventDefault();
+    console.log(event.target);
+    
     console.log(this.query)
   }
 }

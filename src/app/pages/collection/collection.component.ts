@@ -1,41 +1,56 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, Input, OnInit, signal } from '@angular/core';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Component, inject, Input, OnInit, signal } from '@angular/core';
 import { CardsApiService } from '../../services/cards-api.service';
 import { CardCollection } from '../../../models/card';
 import { testCardCollections } from '../../../test/testdata';
 import { ActivatedRoute, RouterLink } from "@angular/router";
 import { CarouselComponent } from '../../components/carousel/carousel.component';
-import { AsyncPipe } from '@angular/common';
+import { map, Observable, switchMap } from 'rxjs';
+import { AsyncPipe, NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-collection',
-  imports: [RouterLink, CarouselComponent],
+  imports: [RouterLink, CarouselComponent, NgIf, AsyncPipe],
   templateUrl: './collection.component.html',
   styleUrl: './collection.component.css'
 })
-export class CollectionComponent implements OnInit {
-  collection = signal<CardCollection | null>(null)
+export class CollectionComponent implements OnInit{
+  // collection: CardCollection | null = null
+  
+  // collection = signal<CardCollection | null>(null)
   // Hier muss ich irgendwie auf route parameter zugreifen
 
   collectionId: string | null;
 
-  constructor(private service: CardsApiService, route: ActivatedRoute) { 
+  collection$: Observable<CardCollection> | undefined;
+
+  constructor(private service: CardsApiService, private route: ActivatedRoute) {
+    // mit snapshot auf param zugreifen bei constructor aufruf
     this.collectionId = route.snapshot.paramMap.get('collectionId');
+
+    
   }
 
   ngOnInit() {
-    if (this.collectionId) {
-this.service.getCardCollectionById(this.collectionId)
-    .subscribe({
-      next: (data) => {
-        this.collection.set(data)
-      },
-      error: (err) => {
-        console.log(err);
-      },
-    });
-    }
-    
-    this.collection.set(testCardCollections[1]) 
+
+    this.collection$ = this.service.getCardCollectionById(this.collectionId!);
+    // if (this.collectionId) {
+    //   this.service.getCardCollectionById(this.collectionId)
+    //     .subscribe({
+    //       next: (data) => {
+    //         this.collection = data
+    //       },
+    //       error: (err) => {
+    //         console.log(err);
+    //       },
+    //       complete: () => {
+    //         console.log("complete");
+            
+    //       }
+    //     });
+
+    // }
+
+    // this.collection = testCardCollections[1]
   }
 }

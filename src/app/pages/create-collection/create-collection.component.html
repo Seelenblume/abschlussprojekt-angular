@@ -4,6 +4,7 @@
         <div class="inputGroup">
           <label htmlFor='title'>Title of your collection</label>
           <input id='title' formControlName="title" placeholder='Enter Title...' class="inputLocal" />
+          <!-- hier überarbeiten -->
            @if (title?.invalid && (title?.dirty || title?.touched)) {
                 @if (title?.hasError('required')) {
                     <span class="errorMessage">This field is required</span>

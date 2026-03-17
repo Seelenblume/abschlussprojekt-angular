@@ -2,7 +2,8 @@
     <div>
     <div class="header">
         <div class="title">
-            <h1>{{collection.title}}</h1>
+            <h1 *ngIf="collection$ | async as collection; else loading">{{collection.title}}</h1>
+            <h1 [textContent]="collection$."
             <span></span>
         </div>
     </div>
@@ -27,4 +28,7 @@
         </div>
     </div>
 </div>
+ <ng-template #loading>
+        <div>Loading ...</div>
+    </ng-template> 
 }
