@@ -1,13 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CollectionGridComponent } from '../../components/collection-grid/collection-grid.component';
-import { testCardCollections } from '../../../test/testdata';
+import { CardsApiService } from '../../services/cards/cards-api.service';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'app-home',
-  imports: [CollectionGridComponent],
+  imports: [CollectionGridComponent, AsyncPipe],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
-  testCardCollection = testCardCollections
+  cardService = inject(CardsApiService)
+
+  collections = this.cardService.getPopularCollections()
 }

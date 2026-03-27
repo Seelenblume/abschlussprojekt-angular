@@ -1,0 +1,10 @@
+<div 
+  [class.toast]="true"
+  [class.success]="type() === 'SUCCESS'"
+  [class.error]="type() !== 'SUCCESS'"
+>
+    <p>{{message()}}</p>
+    <button (click)="removeToast()">
+        XX
+    </button>
+</div>

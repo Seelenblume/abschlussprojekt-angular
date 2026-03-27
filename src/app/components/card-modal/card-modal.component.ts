@@ -11,9 +11,9 @@ import { LucideAngularModule, LucideX } from 'lucide-angular';
 export class CardModalComponent {
 
   form = new FormGroup({
-    front: new FormControl<string>(""),
-    back: new FormControl<string>(""),
-    notes: new FormControl<string>("")
+    front: new FormControl("", {nonNullable: true}),
+    back:  new FormControl("", {nonNullable: true}),
+    notes: new FormControl("", {nonNullable: true}),
   })
 
   lucideX = LucideX
@@ -28,6 +28,7 @@ export class CardModalComponent {
   onSubmit() {
     if (this.form.invalid) {
       this.form.markAllAsTouched()
+      return;
     }
 
     console.log("submit");
@@ -48,7 +49,7 @@ export class CardModalComponent {
 }
 
 type CardForm = {
-  front: string | null
-  back: string | null
-  notes: string | null
+  front: string
+  back: string
+  notes: string
 }

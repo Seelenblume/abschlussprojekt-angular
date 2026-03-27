@@ -1,0 +1,11 @@
+<div class="toastContainer">
+    @for (toast of list(); track $index) {
+        <app-toast [id]="toast.id" 
+        [message]="toast.message" 
+        [type]="toast.type" 
+        [removeToast]="removeToast"
+        ></app-toast>
+    }
+</div>
+
+

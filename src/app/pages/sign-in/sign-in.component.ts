@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { ToastNotification, ToastService } from '../../services/toast/toast.service';
+import { LoginService } from '../../services/login/login.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -9,18 +11,48 @@ import { RouterLink } from '@angular/router';
   styleUrl: './sign-in.component.css'
 })
 export class SignInComponent {
+
+  toast = inject(ToastService)
+  loginService = inject(LoginService)
+  router = inject(Router)
+
   authForm = new FormGroup({
-    email: new FormControl<string>("", [Validators.required, Validators.email]),
-    password: new FormControl<string>("", [Validators.required, Validators.maxLength(50)]),
+    email: new FormControl<string>("", { nonNullable: true, validators: [Validators.required, Validators.email] }),
+    password: new FormControl<string>("", { nonNullable: true, validators: [Validators.required, Validators.maxLength(50)] }),
+ 
   })
 
   onSubmit() {
     if (this.authForm.invalid) {
       console.log(this.authForm.errors);
+       this.toast.addToast({
+        id: "1352637",
+        message: "Something went werong when submit",
+        type: "ERROR"
+      })
       
       this.authForm.markAllAsTouched();
       return;
     }
+
+    const { email, password } = this.authForm.getRawValue();
+
+
+    this.loginService.signIn(email, password).subscribe({
+      next: (user) => {
+        this.router.navigateByUrl(`user/${user.userId}`)
+        this.toast.addToast({
+        id: '',
+        message: 'Signed In!',
+        type: 'SUCCESS'
+      })},
+      error: (err) => this.toast.addToast({
+        id: '',
+        message: (err as Error).message,
+        type: 'ERROR'
+      })
+    });
+     
     console.log(this.authForm.value);
 
   }

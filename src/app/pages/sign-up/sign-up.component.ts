@@ -1,7 +1,8 @@
-import { Component, input } from '@angular/core';
+import { Component, inject, input } from '@angular/core';
 import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
-import { RouterLink } from "@angular/router";
-import { LoginService } from '../../services/login.service';
+import { Router, RouterLink } from "@angular/router";
+import { LoginService } from '../../services/login/login.service';
+import { ToastService } from '../../services/toast/toast.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -11,15 +12,17 @@ import { LoginService } from '../../services/login.service';
 })
 export class SignUpComponent {
 
-  constructor(private loginService: LoginService) { }
+  loginService = inject(LoginService)
+  toast = inject(ToastService)
+  router = inject(Router)
 
   authForm = new FormGroup({
     userName: new FormControl<string>("", {
       nonNullable: true,
       validators: [Validators.required, Validators.maxLength(20)]
     }),
-    email: new FormControl<string>("", {nonNullable: true, validators: [Validators.required, Validators.email]}),
-    password: new FormControl<string>("", {nonNullable: true, validators: [Validators.required, Validators.maxLength(50)]}),
+    email: new FormControl<string>("", { nonNullable: true, validators: [Validators.required, Validators.email] }),
+    password: new FormControl<string>("", { nonNullable: true, validators: [Validators.required, Validators.maxLength(50)] }),
   })
 
   onSubmit() {
@@ -33,7 +36,20 @@ export class SignUpComponent {
 
     const { userName, email, password } = this.authForm.getRawValue();
 
-    this.loginService.signUp(userName, email, password)
+    this.loginService.signUp(userName, email, password).subscribe({
+      next: (user) => {
+        this.router.navigateByUrl(`user/${user.userId}`)
+        this.toast.addToast({
+        id: '',
+        message: 'Signed In!',
+        type: 'SUCCESS'
+      })},
+      error: (err) => this.toast.addToast({
+        id: '',
+        message: (err as Error).message,
+        type: 'ERROR'
+      })
+    });
   }
 
   get userName() {

@@ -1,22 +1,26 @@
-<div>
-    <div class="cardsList">
-         @if (showModal() && selectedCard(); as card) {
-            <app-card-modal (closeModal)="setShowModal($event)" 
-            (addCard)="handleUpdateCard(card.id, $event.front, $event.back, $event.notes)"></app-card-modal>
-            }
-        @for (card of collection.cards; track $index) {
+@if (showModal()) {
+  @if (selectedCard(); as selected) {
+    <app-card-modal-update 
+      (closeModal)="showModal.set(false)" 
+      (addCard)="handleUpdateCard(selected.id, $event.front, $event.back, $event.notes)">
+    </app-card-modal-update>
+  } @else {
+    <app-card-modal 
+      (closeModal)="showModal.set(false)" 
+      (addCard)="handleAddCard($event.front, $event.back, $event.notes)">
+    </app-card-modal>
+  }
+}
 
-        <div>
-           
-            <!-- {showModal && <CardModal update onModalClose={() => setShowModal(false)} onAddCard={(front, back, notes) => handleUpdateCard(card.id, front, back, notes)} />} -->
-            <div class="card">
-                <app-card-small [card]="card"></app-card-small>
-                <button (click)="onEdit(true, card)">Edit Card</button>
-                <!-- <CardSmall card={card} /> -->
-                <!-- <button onClick={() => setShowModal(true)}>Edit Card</button> -->
-            </div>
-        </div>
-        }
-
-    </div>
-</div>
+@if (collection(); as collection) {
+  @if (collection.cards.length > 0) {
+    @for (card of collection.cards; track card.id) {
+      <div class="card">
+        <app-card-small [card]="card"></app-card-small>
+        <button (click)="onEdit(card)">Edit Card</button>
+      </div>
+    }
+  } @else {
+    <p>Noch keine Karten vorhanden!</p>
+  }
+}

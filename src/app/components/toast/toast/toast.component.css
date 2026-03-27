@@ -1,0 +1,19 @@
+.toast {
+    width: 15rem;
+    border-radius: var(--border-radius);
+    padding: 0.5rem;
+    margin: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.success {
+    border: 0.1rem solid var(--success-color);
+    background-color: rgb(210, 240, 210);
+}
+
+.error {
+    border: 0.1rem solid var(--accent-red);
+    background-color: rgb(240, 210, 210);
+}

@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
-import { RouterLink } from "@angular/router";
+import { Component, inject } from '@angular/core';
+import { Router, RouterLink } from "@angular/router";
 import { SearchBarComponent } from '../search-bar/search-bar.component';
 import { LucideSearch, LucideAngularModule, LucidePlus } from 'lucide-angular';
+import { LoginService } from '../../services/login/login.service';
+import { ToastService } from '../../services/toast/toast.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -12,4 +14,29 @@ import { LucideSearch, LucideAngularModule, LucidePlus } from 'lucide-angular';
 })
 export class NavBarComponent {
   plusIcon = LucidePlus;
+
+  loginService = inject(LoginService)
+  toast = inject(ToastService)
+  router = inject(Router)
+  loginInfo = this.loginService.loginInfo
+
+  signOut() {
+    this.loginService.logout().subscribe({
+      next: () => {
+        this.router.navigateByUrl("/")
+        this.toast.addToast({
+          id: '',
+          message: "Signed out!",
+          type: 'SUCCESS'
+        })
+      }, 
+      error: () => {
+      this.toast.addToast({
+          id: '',
+          message: "Signed out!",
+          type: 'ERROR'
+        })
+      }
+    })
+  }
 }
