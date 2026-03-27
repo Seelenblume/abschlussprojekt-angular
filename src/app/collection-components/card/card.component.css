@@ -1,0 +1,54 @@
+/* https://www.w3schools.com/howto/howto_css_flip_card.asp */
+
+
+.card {
+  width: 40rem;
+  height: 20rem;
+  cursor: pointer;
+  perspective: 1000px;
+  justify-self: center;
+}
+
+.inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.3s ease;
+  transform-style: preserve-3d;
+}
+
+.flip {
+  transform: rotateX(180deg);
+}
+
+.front,
+.back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  /* Safari */
+  backface-visibility: hidden;
+  border: 1px solid black;
+  background-color: var(--primary-color);
+
+  border-radius: var(--border-radius);
+
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.back {
+  width: 100%;
+  height: 100%;
+  color: black;
+  transform: rotateX(180deg);
+}
+
+.notes {
+  margin-top: 1rem;
+  padding: 0.5rem;
+}

@@ -1,0 +1,56 @@
+.collection {
+    position: relative;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.title {
+    display: flex;
+    gap: 1rem;
+    justify-content: start;
+    align-items: center;
+}
+
+.categories {
+    display: flex;
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.info {
+    margin-top: 2rem;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    gap: 2rem;
+}
+
+.profile {
+
+    .name {
+        margin-top: 1rem;
+        display: flex;
+        gap: 0.5rem;
+        align-items: center;
+    }
+
+    img {
+        border-radius: 100%;
+        width: 3rem;
+        height: 3rem;
+        border: 2px solid black
+    }
+}
+
+.desc {
+    width: 60%;
+    height: 10rem;
+    border: 1px solid gray;
+    border-radius: var(--border-radius);
+    padding: 0.5rem;
+    margin-top: 0.25rem;
+}

@@ -1,7 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { LoginService } from './services/login/login.service';
-import { ToastService } from './services/toast/toast.service';
+import { LoginService } from './auth/login/login.service';
+import { ToastService } from './toast-notifications/toast/toast.service';
 
 @Component({
   selector: 'app-root',

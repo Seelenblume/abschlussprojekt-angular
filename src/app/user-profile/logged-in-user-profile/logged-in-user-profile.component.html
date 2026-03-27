@@ -1,0 +1,32 @@
+<div>
+      <h1>Mein Konto</h1>
+      <app-profile-banner [username]="user().name"></app-profile-banner>
+      <div class="switch">
+        <span
+  [class.show]="!showSaved"
+  (click)="toggleShowSaved(false)">
+  Meine Sammlungen
+</span>
+
+<span
+  [class.show]="showSaved"
+  (click)="toggleShowSaved(true)">
+  Meine gespeicherten Sammlungen
+</span>
+
+       </div>
+
+      @if (showSaved) {
+        @if (savedCollections && savedCollections.length !== 0) {
+            <app-collection-grid [collections]="savedCollections" ></app-collection-grid>
+        } @else {
+            <p>Keine Sammlungen gespeichert</p>
+        }
+      } @else {
+        @if (user().collections; as col) {
+            <app-collection-grid [collections]="col" ></app-collection-grid>
+        } @else {
+            <p>Noch keine eigenen Sammlungen</p>
+        }
+      }
+    </div>

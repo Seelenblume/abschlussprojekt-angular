@@ -1,17 +1,20 @@
 import { Routes } from '@angular/router';
-import { LayoutComponent } from './layout/layout.component';
-import { HomeComponent } from './pages/home/home.component';
-import { CollectionComponent } from './pages/collection/collection.component';
-import { SignInComponent } from './pages/sign-in/sign-in.component';
-import { SignUpComponent } from './pages/sign-up/sign-up.component';
-import { CreateCollectionComponent } from './pages/create-collection/create-collection.component';
-import { CardsComponent } from './pages/cards/cards.component';
+import { LayoutComponent } from './general-layout/layout/layout.component';
+import { SignInComponent } from './auth/sign-in/sign-in.component';
+import { SignUpComponent } from './auth/sign-up/sign-up.component';
+import { CardsComponent } from './collection-components/all-cards/cards/cards.component';
+import { CollectionComponent } from './collection-components/collection/collection.component';
+import { CreateCollectionComponent } from './collection-components/create-collection/create-collection.component';
+import { HomeComponent } from './home-page/home/home.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
+
 
 export const routes: Routes = [
     {
     path: '', component: LayoutComponent,
     children: [
       { path: '', component: HomeComponent },
+      { path: 'user/:userId', component: UserProfileComponent },
       { path: 'sign-in', component: SignInComponent },
       { path: 'sign-up', component: SignUpComponent },
       { path: 'collection' , children: [

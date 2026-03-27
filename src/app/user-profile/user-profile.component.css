@@ -1,0 +1,12 @@
+.profile {
+    width: var(--width);
+    margin: 1rem auto;
+}
+
+
+.collections {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}

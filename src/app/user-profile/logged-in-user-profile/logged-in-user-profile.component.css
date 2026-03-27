@@ -1,0 +1,11 @@
+.switch {
+    display: flex;
+    gap: 1rem;
+    font-size: larger;
+    cursor: pointer;
+    margin: 5rem 0 2rem 0;
+}
+
+.show {
+    border-bottom: 0.25rem solid green;
+}
