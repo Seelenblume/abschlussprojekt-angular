@@ -20,6 +20,10 @@ export class CardsApiService {
     return this.httpClient.get<CardCollection>(`${this.apiUrl}/collection/${collectionId}`)
   }
 
+  getCardCollectionBySearch(search: string) {
+    return this.httpClient.get<CardCollection>(`${this.apiUrl}/search?query=${search}`)
+  }
+
   getSavedCollectionsByUserId(userId: string) {
     return this.httpClient.get<CardCollection[]>(`${this.apiUrl}/saved/${userId}`)
   }

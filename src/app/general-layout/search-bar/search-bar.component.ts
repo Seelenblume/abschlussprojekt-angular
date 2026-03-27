@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 import { LucideSearch, LucideAngularModule } from 'lucide-angular';
 
 @Component({
@@ -10,13 +11,18 @@ import { LucideSearch, LucideAngularModule } from 'lucide-angular';
 })
 export class SearchBarComponent {
   searchIcon = LucideSearch;
+  router = inject(Router)
 
   query: string = ""
 
   onSubmit(event: Event) {
     event.preventDefault();
     console.log(event.target);
-    
-    console.log(this.query)
+
+    event.preventDefault()
+    if (this.query) {
+      console.log(this.query)
+      this.router.navigateByUrl(`/collections?query=${this.query}`)
+    }
   }
 }
