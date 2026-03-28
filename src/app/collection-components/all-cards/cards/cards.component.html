@@ -1,8 +1,11 @@
+<button (click)="showModal.set(true)" class="addCard">
+  <lucide-icon [img]="lucidePlus"></lucide-icon>
+</button>
 @if (showModal()) {
   @if (selectedCard(); as selected) {
     <app-card-modal-update 
       (closeModal)="showModal.set(false)" 
-      (addCard)="handleUpdateCard(selected.id, $event.front, $event.back, $event.notes)">
+      (addCard)="handleUpdateCard(selected.cardId, $event.front, $event.back, $event.notes)">
     </app-card-modal-update>
   } @else {
     <app-card-modal 
@@ -14,10 +17,13 @@
 
 @if (collection(); as collection) {
   @if (collection.cards.length > 0) {
-    @for (card of collection.cards; track card.id) {
+    @for (card of collection.cards; track card.cardId) {
       <div class="card">
         <app-card-small [card]="card"></app-card-small>
-        <button (click)="onEdit(card)">Edit Card</button>
+        <div class="below">
+          <p class="notesArea">{{card.notes}}</p>
+          <button (click)="onEdit(card)"> <lucide-icon [img]="lucideEdit"></lucide-icon></button>
+        </div>
       </div>
     }
   } @else {

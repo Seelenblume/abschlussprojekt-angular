@@ -1,10 +1,10 @@
 import { Component, output } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
-import { LucideX } from 'lucide-angular';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { LucideX, LucideAngularModule } from 'lucide-angular';
 
 @Component({
   selector: 'app-card-modal-update',
-  imports: [],
+  imports: [LucideAngularModule, ReactiveFormsModule],
   templateUrl: './card-modal-update.component.html',
   styleUrl: './card-modal-update.component.css'
 })
@@ -25,7 +25,7 @@ export class CardModalUpdateComponent {
     this.closeModal.emit(false)
   }
 
-  onSubmit() {
+  onSubmit(event: Event) {
     if (this.form.invalid) {
       this.form.markAllAsTouched()
       return;

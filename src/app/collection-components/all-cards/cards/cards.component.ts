@@ -7,16 +7,19 @@ import { CardsApiService } from '../../cards/cards-api.service';
 import { CardModalUpdateComponent } from '../card-modal-update/card-modal-update.component';
 import { CardModalComponent } from '../card-modal/card-modal.component';
 import { CardSmallComponent } from '../card-small/card-small.component';
+import { LucidePlus, LucideAngularModule, LucideSquarePen } from 'lucide-angular';
 
 @Component({
   selector: 'app-cards',
-  imports: [CardModalComponent, CardSmallComponent, CardModalUpdateComponent],
+  imports: [CardModalComponent, CardSmallComponent, CardModalUpdateComponent, LucideAngularModule],
   templateUrl: './cards.component.html',
   styleUrl: './cards.component.css'
 })
 export class CardsComponent implements OnInit {
-  // Hier muss ich irgendwie auf route parameter zugreifen
-  // collectionId: string | null;
+
+  lucidePlus = LucidePlus
+  lucideEdit = LucideSquarePen
+
   route = inject(ActivatedRoute)
   service = inject(CardsApiService)
   toast = inject(ToastService)
@@ -50,6 +53,7 @@ export class CardsComponent implements OnInit {
     ).subscribe({
       next: (updated) => {
         this.collection.set(updated);
+        this.showModal.set(false)
       },
       error: (err) => {
         this.toast.addToast({

@@ -54,3 +54,9 @@
     padding: 0.5rem;
     margin-top: 0.25rem;
 }
+
+
+:host ::ng-deep lucide-icon.filled svg {
+  fill: black;
+  stroke: none;
+}

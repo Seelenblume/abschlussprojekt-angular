@@ -1,11 +1,20 @@
 <div class="carousel">
     <div class="cards" [style.transform]="'translateX(-' + (currentIndex() * 100) + '%)'">
-        @for (card of collection().cards; track $index) {
-        <div class="card">
-            <app-card [card]="card"></app-card>
-        </div>
+        @if (collection().cards.length > 0) {
+             @for (card of collection().cards; track $index) {
+                <div class="card">
+                    <app-card [card]="card"></app-card>
+                </div>
+            }
+        } @else {
+            <span><p>Noch keine Karten vorhanden!</p>
+            <a [routerLink]="[`/collection/${collection().collectionId}/cards`]" class="allCards"><p>Hier eine Karte erstellen.</p></a>
+            </span>
         }
+       
     </div>
+
+    @if (collection().cards.length > 0) {
 
     <div class="arrows">
         <button (click)="setCurrentIndex(currentIndex() - 1)" [disabled]="currentIndex() === 0">
@@ -16,4 +25,5 @@
 
         </button>
     </div>
+}
 </div>

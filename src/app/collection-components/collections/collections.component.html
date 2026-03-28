@@ -1,1 +1,9 @@
-<p>collections works!</p>
+@if (collections$ | async; as cols) {
+    @if (cols.length !== 0) {
+        <app-collection-grid [collections]="cols"></app-collection-grid>
+    } @else {
+        <p>Keine Sammlungen gefunden.</p>
+    }
+} @else {
+    <p>Loading...</p>
+}

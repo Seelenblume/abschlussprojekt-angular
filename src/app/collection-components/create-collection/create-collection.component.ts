@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Location } from '@angular/common';
 import { MatInputModule } from '@angular/material/input';
@@ -10,6 +10,7 @@ import { LoginService } from '../../auth/login/login.service';
 import { ToastService } from '../../toast-notifications/toast/toast.service';
 import { CardsApiService } from '../cards/cards-api.service';
 import { Router} from '@angular/router';
+import { CategoryService } from '../category-components/category/category.service';
 
 @Component({
   selector: 'app-create-collection',
@@ -17,22 +18,33 @@ import { Router} from '@angular/router';
   templateUrl: './create-collection.component.html',
   styleUrl: './create-collection.component.css'
 })
-export class CreateCollectionComponent {
+export class CreateCollectionComponent implements OnInit{
 
   private location = inject(Location)
   private service = inject(CardsApiService)
   private toast = inject(ToastService)
   private router = inject(Router)
+  private categoryService = inject(CategoryService)
   private loginService = inject(LoginService)
   loginData = this.loginService.loginInfo
 
-  categories = testCategories
+  categories: Category[] = []
+
+  ngOnInit(): void {
+    this.categoryService.getAllCategories().subscribe({
+      next: (value) => {
+        this.categories = value
+      }
+    })
+  }
   
-  category: Category[] = []
 
   form = new FormGroup({
     title: new FormControl<string>("", { nonNullable: true, validators: [Validators.required, Validators.maxLength(20)]}),
     desc: new FormControl<string>("", { nonNullable: true, validators: [Validators.required, Validators.maxLength(200)]}),
+    categories: new FormControl<Category[]>([], { nonNullable: true, 
+      // validators: [maxSelected(5)]
+})
   })
 
   onSubmit() {
@@ -42,7 +54,7 @@ export class CreateCollectionComponent {
       return;
     }
 
-    const { desc, title } = this.form.getRawValue()
+    const { desc, title, categories } = this.form.getRawValue()
 
     const log = this.loginData()
     if (!log) {
@@ -50,7 +62,7 @@ export class CreateCollectionComponent {
       // fehler toast und dann return?
       return;
     }
-    this.service.postCardCollection(log.userId, desc, title, []).subscribe({
+    this.service.postCardCollection(log.userId, title, categories, "blue", desc).subscribe({
       next: (value) => {
         this.toast.addToast({
           id: '',

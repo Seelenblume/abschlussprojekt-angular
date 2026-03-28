@@ -12,5 +12,5 @@ import { CardsApiService } from '../../collection-components/cards/cards-api.ser
 export class HomeComponent {
   cardService = inject(CardsApiService)
 
-  collections = this.cardService.getPopularCollections()
+  collections$ = this.cardService.getPopularCollections()
 }

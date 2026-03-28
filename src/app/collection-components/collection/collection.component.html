@@ -1,16 +1,21 @@
 
-@if (collection$ | async; as collection) {
+@if (collection(); as collection) {
      <div class="header">
         <div class="title">
             <h1>{{collection.title}}</h1>
+            @if (loginInfo()) {
+                <span (click)="handleBookmark()">
+                    <lucide-icon [img]="lucideBookmark" [class.filled]="bookmark()"></lucide-icon>
+                </span>
+            }
         </div>
      </div>
-     @for (category of collection.categories; track $index) {
-        <!-- kategorie component? -->
-        <div>
-            {{category.label}}
-        </div>
-     }
+     <div class="categories">
+        @for (category of collection.categories; track $index) {
+            <app-category-tag [category]="category"></app-category-tag>
+        }
+     </div>
+     
     <app-carousel [collection]="collection"></app-carousel>
     <div class="info">
          <div class="profile">

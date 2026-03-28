@@ -1,1 +1,40 @@
-<p>card-modal-update works!</p>
+<div>
+    <div class="back"></div>
+    <div class="addCard">
+        <div class="header">
+
+            <h3>Karte Aktualisieren</h3>
+            <button (click)="onCloseModal()">
+                <lucide-icon [img]="lucideX"></lucide-icon>
+            </button>
+
+        </div>
+        <form [formGroup]="form" (ngSubmit)="onSubmit($event)">
+            <div class="actions">
+                <div class="inputGroup">
+                    <label>Front</label>
+                    <input type="text" formControlName="front" />
+                </div>
+
+                <div class="inputGroup">
+                    <label>Back</label>
+                    <input type="text" formControlName="back" />
+                </div>
+
+                <div>
+                    <label>Notes (optional)</label>
+                    <textarea class="textarea" formControlName="notes"></textarea>
+                </div>
+            </div>
+            <div>
+                <button type="submit">
+                    Hinzufügen
+                </button>
+                <button type="button" (click)="onCloseModal()">
+                    Abbrechen
+                </button>
+            </div>
+        </form>
+    </div>
+
+</div>

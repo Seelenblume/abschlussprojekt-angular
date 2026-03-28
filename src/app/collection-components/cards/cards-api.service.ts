@@ -20,8 +20,12 @@ export class CardsApiService {
     return this.httpClient.get<CardCollection>(`${this.apiUrl}/collection/${collectionId}`)
   }
 
+  getCardCollectionByCategory(category: string) {
+    return this.httpClient.get<CardCollection[]>(`${this.apiUrl}/collection_by_category/${category}`)
+  }
+
   getCardCollectionBySearch(search: string) {
-    return this.httpClient.get<CardCollection>(`${this.apiUrl}/search?query=${search}`)
+    return this.httpClient.get<CardCollection[]>(`${this.apiUrl}/search?query=${search}`)
   }
 
   getSavedCollectionsByUserId(userId: string) {
@@ -29,11 +33,11 @@ export class CardsApiService {
   }
 
   postCardCollection(
-    userId: string, 
-    title: string, 
-    color: string, 
+    userId: string,
+    title: string,
     categories: Category[],
-    description?: string, 
+    color: string,
+    description?: string,
   ) {
     return this.httpClient.post<CardCollection>(`${this.apiUrl}/collection`,
       JSON.stringify({
@@ -54,12 +58,13 @@ export class CardsApiService {
     back: string,
     notes: string,
   ) {
-    return this.httpClient.post(`${this.apiUrl}/card}`,
+    const array = [{front,
+        back,
+        notes}]
+    return this.httpClient.post(`${this.apiUrl}/card`,
       JSON.stringify({
         collectionId,
-        front,
-        back,
-        notes
+        cards: array
       }),
       {
         headers: new HttpHeaders({
@@ -95,7 +100,7 @@ export class CardsApiService {
   postBookmark(
     userId: string, collectionId: string
   ) {
-    return this.httpClient.post(`${this.apiUrl}/save}`,
+    return this.httpClient.post(`${this.apiUrl}/save`,
       JSON.stringify({
         userId,
         collectionId,
@@ -108,11 +113,26 @@ export class CardsApiService {
       }
     )
   }
-  
+
   deleteBookmark(
     userId: string, collectionId: string
   ) {
-    //idk
+    return this.httpClient.delete(`${this.apiUrl}/save`,
+      {
+        body: JSON.stringify({
+          userId,
+          collectionId,
+        }),
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+        }), 
+        withCredentials: true
+      }
+    )
   }
+
+
+
+
 
 }

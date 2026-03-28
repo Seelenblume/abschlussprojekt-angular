@@ -31,3 +31,11 @@
   position: absolute;
   bottom: 0;
 }
+
+.allCards {
+  cursor: pointer;
+  &:hover {
+    color: var(--secondary-color);
+        text-decoration: underline;
+  }
+}

@@ -32,8 +32,19 @@
                 but multiselect is not provided, I used different library      
           -->
             <mat-form-field>
-  <mat-label>Select Food</mat-label>
+  <mat-label>Kategorie wählen</mat-label>
   <!-- https://ng-matero.github.io/extensions/components/select/overview -->
+
+  <!-- bind value muss leer sein, damit das ganze objekt gegeben wird -->
+      <mtx-select
+            formControlName="categories"
+            [items]="categories"
+            bindLabel="label"
+            bindValue=""
+            [multiple]="true"
+            appendTo="app-create-collection"
+            [maxSelectedItems]="5"
+        ></mtx-select>
 
     <!-- <mtx-select
             [items]="categories"
@@ -44,16 +55,10 @@
             appendTo="app-select-overview"
         ></mtx-select> -->
 
-        <mtx-select
-            [items]="categories"
-            bindLabel="label"
-            bindValue="value"
-            [multiple]="true"
-            appendTo="app-create-collection"
-        ></mtx-select>
+      
 
-        <mat-hint>Choose your favorite food</mat-hint>
-        <mat-error>Please choose a food</mat-error>
+        <!-- <mat-hint>Choose your favorite food</mat-hint>
+        <mat-error>Please choose a food</mat-error> -->
         </mat-form-field>
         </div>
 

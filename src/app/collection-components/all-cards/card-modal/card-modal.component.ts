@@ -1,10 +1,10 @@
 import { Component, input, output } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { LucideAngularModule, LucideX } from 'lucide-angular';
 
 @Component({
   selector: 'app-card-modal',
-  imports: [LucideAngularModule],
+  imports: [LucideAngularModule, ReactiveFormsModule],
   templateUrl: './card-modal.component.html',
   styleUrl: './card-modal.component.css'
 })
@@ -25,9 +25,12 @@ export class CardModalComponent {
     this.closeModal.emit(false)
   }
 
-  onSubmit() {
+  onSubmit(event: Event) {
+    event.preventDefault()
     if (this.form.invalid) {
+      console.log(this.form.getRawValue())
       this.form.markAllAsTouched()
+      console.log("invalid")
       return;
     }
 

@@ -7,6 +7,7 @@ import { CollectionComponent } from './collection-components/collection/collecti
 import { CreateCollectionComponent } from './collection-components/create-collection/create-collection.component';
 import { HomeComponent } from './home-page/home/home.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { CollectionsComponent } from './collection-components/collections/collections.component';
 
 
 export const routes: Routes = [
@@ -17,6 +18,7 @@ export const routes: Routes = [
       { path: 'user/:userId', component: UserProfileComponent },
       { path: 'sign-in', component: SignInComponent },
       { path: 'sign-up', component: SignUpComponent },
+      { path: 'collections', component: CollectionsComponent },
       { path: 'collection' , children: [
         {path: 'create', component: CreateCollectionComponent},
         {path: ':collectionId', component: CollectionComponent},

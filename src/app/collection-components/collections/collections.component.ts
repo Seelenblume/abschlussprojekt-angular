@@ -1,25 +1,38 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { map, switchMap } from 'rxjs';
+import { map, of, switchMap } from 'rxjs';
 import { CardsApiService } from '../cards/cards-api.service';
 import { CardCollection } from '../../../models/card';
+import { CollectionGridComponent } from "../../home-page/collection-grid/collection-grid.component";
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'app-collections',
-  imports: [],
+  imports: [CollectionGridComponent, AsyncPipe],
   templateUrl: './collections.component.html',
   styleUrl: './collections.component.css'
 })
 export class CollectionsComponent {
 
   private route = inject(ActivatedRoute)
-  private service = inject(CardsApiService)
+  private cardsService = inject(CardsApiService)
 
-  collections: CardCollection[] | null = null
+  // kein extra subscribe nötig da keine side effects (logging)
+  // collections ist ein Observable; mit Async Pipe kann man darauf zugreifen
+  collections$ = this.route.queryParamMap.pipe(
+    switchMap(params => {
+    const query = params.get('query');
+    const category = params.get('category');
 
-      query$ = this.route.queryParamMap.pipe(
-        map((params) => params.get("query")!), 
-        switchMap(query => this.service.getCardCollectionBySearch(query)))
+    if (query){
+      return this.cardsService.getCardCollectionBySearch(query);
+    } 
+    if (category) {
+      return this.cardsService.getCardCollectionByCategory(category);
+    }
+    return of([]);
+  })
+);
 
         // ????????
     

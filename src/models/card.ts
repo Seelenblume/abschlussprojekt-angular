@@ -15,7 +15,7 @@ export interface CardCollection {
 
 
 export type CardModel = {
-    id: string,
+    cardId: string,
     front: string,
     back: string,
     notes: string

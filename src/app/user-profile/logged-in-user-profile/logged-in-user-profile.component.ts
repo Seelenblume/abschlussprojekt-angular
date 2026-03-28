@@ -28,7 +28,7 @@ export class LoggedInUserProfileComponent implements OnInit{
       error: (error) => {
         this.toast.addToast({
           id: '',
-          message: '',
+          message: (error as Error).message,
           type: 'SUCCESS'
         })
       }

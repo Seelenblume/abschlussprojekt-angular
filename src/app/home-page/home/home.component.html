@@ -2,7 +2,7 @@
     <h1>Überschrift</h1>
     <h2>Überschrift</h2>
 
-    @if (collections | async; as collectionsData) {
+    @if (collections$ | async; as collectionsData) {
         <div class="popular">
             <h3>Popular Collections</h3>
             <app-collection-grid [collections]="collectionsData"></app-collection-grid>
