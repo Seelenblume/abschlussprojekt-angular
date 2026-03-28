@@ -1,0 +1,13 @@
+<p mat-button [matMenuTriggerFor]="categoryMenu" class="menu">
+  Nach Kategorie
+</p>
+
+<mat-menu #categoryMenu="matMenu">
+    @for (category of categories; track $index) {
+        <button mat-menu-item class="menuItem"
+            (click)="onClick(category)">
+        {{ category.label }}
+    </button>
+    }
+  
+</mat-menu>

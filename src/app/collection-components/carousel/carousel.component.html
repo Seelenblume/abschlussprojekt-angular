@@ -7,9 +7,16 @@
                 </div>
             }
         } @else {
-            <span><p>Noch keine Karten vorhanden!</p>
-            <a [routerLink]="[`/collection/${collection().collectionId}/cards`]" class="allCards"><p>Hier eine Karte erstellen.</p></a>
-            </span>
+            @if (loginInfo(); as loginData) {
+                @if (loginData.userId === collection().user.userId) {
+                    <span><p>Noch keine Karten vorhanden!</p>
+                    <a [routerLink]="[`/collection/${collection().collectionId}/cards`]" class="allCards"><p>Hier eine Karte erstellen.</p></a>
+                    </span>
+                }
+            } @else {
+                <p>Diese Sammlung hat noch keine Karten.</p>
+            }
+            
         }
        
     </div>

@@ -9,6 +9,14 @@
                 </span>
             }
         </div>
+        @if (loginInfo(); as loginData) {
+            @if (loginData.userId === collection.user.userId) {
+                <a [routerLink]="[`/collection/${collection.collectionId}/cards`]" class="allCards">
+                    <p>Alle Karten ansehen</p>
+                    <lucide-icon [img]="lucideLibraryBig"></lucide-icon>
+                </a>
+            }
+        }
      </div>
      <div class="categories">
         @for (category of collection.categories; track $index) {

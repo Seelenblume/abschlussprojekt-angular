@@ -55,6 +55,17 @@
     margin-top: 0.25rem;
 }
 
+.allCards {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    gap: 1rem;
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+
 
 :host ::ng-deep lucide-icon.filled svg {
   fill: black;

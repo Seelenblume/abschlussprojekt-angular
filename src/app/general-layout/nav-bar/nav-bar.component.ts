@@ -4,11 +4,12 @@ import { SearchBarComponent } from '../search-bar/search-bar.component';
 import { LucideSearch, LucideAngularModule, LucidePlus } from 'lucide-angular';
 import { LoginService } from '../../auth/login/login.service';
 import { ToastService } from '../../toast-notifications/toast/toast.service';
+import { CategoryListComponent } from '../../collection-components/category-components/category-list/category-list.component';
 
 @Component({
   selector: 'app-nav-bar',
   standalone: true,
-  imports: [RouterLink, SearchBarComponent, LucideAngularModule],
+  imports: [RouterLink, SearchBarComponent, LucideAngularModule, CategoryListComponent],
   templateUrl: './nav-bar.component.html',
   styleUrl: './nav-bar.component.css'
 })

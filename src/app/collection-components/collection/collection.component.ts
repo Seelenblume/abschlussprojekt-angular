@@ -5,7 +5,7 @@ import { map, switchMap } from 'rxjs';
 import { CardsApiService } from '../cards/cards-api.service';
 import { CarouselComponent } from '../carousel/carousel.component';
 import { LoginService } from '../../auth/login/login.service';
-import { LucideAngularModule, LucideBookmark } from 'lucide-angular';
+import { LucideAngularModule, LucideBookmark, LucideLibraryBig } from 'lucide-angular';
 import { ToastService } from '../../toast-notifications/toast/toast.service';
 import { CategoryTagComponent } from "../category-components/category-tag/category-tag.component";
 import { toSignal } from '@angular/core/rxjs-interop';
@@ -24,6 +24,7 @@ export class CollectionComponent {
   // collectionId: string | null;
 
   lucideBookmark = LucideBookmark
+  lucideLibraryBig = LucideLibraryBig
   bookmark = signal(false)
   // collection$: Observable<CardCollection> | undefined;
   private service = inject(CardsApiService)
