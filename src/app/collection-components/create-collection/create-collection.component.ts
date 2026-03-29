@@ -11,10 +11,11 @@ import { ToastService } from '../../toast-notifications/toast/toast.service';
 import { CardsApiService } from '../cards/cards-api.service';
 import { Router} from '@angular/router';
 import { CategoryService } from '../category-components/category/category.service';
+import { v4 as uuidv4 } from 'uuid';
 
 @Component({
   selector: 'app-create-collection',
-  imports: [ReactiveFormsModule, MatInputModule,MatFormFieldModule, MtxSelectModule],
+  imports: [ReactiveFormsModule, MatInputModule, MatFormFieldModule, MtxSelectModule],
   templateUrl: './create-collection.component.html',
   styleUrl: './create-collection.component.css'
 })
@@ -42,9 +43,7 @@ export class CreateCollectionComponent implements OnInit{
   form = new FormGroup({
     title: new FormControl<string>("", { nonNullable: true, validators: [Validators.required, Validators.maxLength(20)]}),
     desc: new FormControl<string>("", { nonNullable: true, validators: [Validators.required, Validators.maxLength(200)]}),
-    categories: new FormControl<Category[]>([], { nonNullable: true, 
-      // validators: [maxSelected(5)]
-})
+    categories: new FormControl<Category[]>([], { nonNullable: true, })
   })
 
   onSubmit() {
@@ -65,7 +64,7 @@ export class CreateCollectionComponent implements OnInit{
     this.service.postCardCollection(log.userId, title, categories, "blue", desc).subscribe({
       next: (value) => {
         this.toast.addToast({
-          id: '',
+          id: uuidv4(),
           message: '',
           type: 'SUCCESS'
         })
@@ -73,7 +72,7 @@ export class CreateCollectionComponent implements OnInit{
       },
       error: (error) => {
         this.toast.addToast({
-          id: '',
+          id: uuidv4(),
           message: (error as Error).message,
           type: 'ERROR'
         })

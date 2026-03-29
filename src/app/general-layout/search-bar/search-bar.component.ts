@@ -13,13 +13,9 @@ export class SearchBarComponent {
   searchIcon = LucideSearch;
   router = inject(Router)
 
-  query: string = ""
+  query = ""
 
-  onSubmit(event: Event) {
-    event.preventDefault();
-    console.log(event.target);
-
-    event.preventDefault()
+  onSubmit() {
     if (this.query) {
       console.log(this.query)
       this.router.navigateByUrl(`/collections?query=${this.query}`)

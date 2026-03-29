@@ -5,6 +5,7 @@ import { CardsApiService } from '../../collection-components/cards/cards-api.ser
 import { CollectionGridComponent } from '../../home-page/collection-grid/collection-grid.component';
 import { ToastService } from '../../toast-notifications/toast/toast.service';
 import { ProfileBannerComponent } from '../profile-banner/profile-banner.component';
+import { v4 as uuidv4 } from 'uuid';
 
 @Component({
   selector: 'app-logged-in-user-profile',
@@ -27,7 +28,7 @@ export class LoggedInUserProfileComponent implements OnInit{
       },
       error: (error) => {
         this.toast.addToast({
-          id: '',
+          id: uuidv4(),
           message: (error as Error).message,
           type: 'SUCCESS'
         })

@@ -4,19 +4,20 @@
         <div class="inputGroup">
           <label htmlFor='title'>Title of your collection</label>
           <input id='title' formControlName="title" placeholder='Enter Title...' class="inputLocal" />
-          <!-- hier überarbeiten -->
            @if (title?.invalid && (title?.dirty || title?.touched)) {
                 @if (title?.hasError('required')) {
                     <span class="errorMessage">This field is required</span>
                 }
                     @if (title?.errors?.['maxlength']; as err) {
-                    <span class="errorMessage">Maximum of {{err.requiredLength}} characters</span>
+                      <span class="errorMessage">Maximum of {{err.requiredLength}} characters</span>
                 }
             } 
         </div>
         <div class="inputGroup">
           <label htmlFor='desc'>Description</label>
           <textarea id='desc' formControlName="desc" class="textarea"></textarea>
+                    <!-- hier überarbeiten idk mehr wie -->
+
              @if (desc?.invalid && (desc?.dirty || desc?.touched)) {
                     @if (desc?.errors?.['maxlength']; as err) {
                     <span class="errorMessage">Maximum of {{err.requiredLength}} characters</span>
@@ -32,33 +33,33 @@
                 but multiselect is not provided, I used different library      
           -->
             <mat-form-field>
-  <mat-label>Kategorie wählen</mat-label>
-  <!-- https://ng-matero.github.io/extensions/components/select/overview -->
+                <mat-label>Kategorie wählen</mat-label>
+                <!-- https://ng-matero.github.io/extensions/components/select/overview -->
 
-  <!-- bind value muss leer sein, damit das ganze objekt gegeben wird -->
-      <mtx-select
-            formControlName="categories"
-            [items]="categories"
-            bindLabel="label"
-            bindValue=""
-            [multiple]="true"
-            appendTo="app-create-collection"
-            [maxSelectedItems]="5"
-        ></mtx-select>
+                <!-- bind value muss leer sein, damit das ganze objekt gegeben wird -->
+                    <mtx-select
+                          formControlName="categories"
+                          [items]="categories"
+                          bindLabel="label"
+                          bindValue=""
+                          [multiple]="true"
+                          appendTo="app-create-collection"
+                          [maxSelectedItems]="3"
+                      ></mtx-select>
 
-    <!-- <mtx-select
-            [items]="categories"
-            bindLabel="name"
-            bindValue="id"
-            [multiple]="true"
-            [(ngModel)]="food"
-            appendTo="app-select-overview"
-        ></mtx-select> -->
+                  <!-- <mtx-select
+                          [items]="categories"
+                          bindLabel="name"
+                          bindValue="id"
+                          [multiple]="true"
+                          [(ngModel)]="food"
+                          appendTo="app-select-overview"
+                      ></mtx-select> -->
 
-      
+                    
 
-        <!-- <mat-hint>Choose your favorite food</mat-hint>
-        <mat-error>Please choose a food</mat-error> -->
+                      <!-- <mat-hint>Choose your favorite food</mat-hint>
+                      <mat-error>Please choose a food</mat-error> -->
         </mat-form-field>
         </div>
 

@@ -57,7 +57,7 @@ export class CardsComponent implements OnInit {
       },
       error: (err) => {
         this.toast.addToast({
-          id: "qwetrz",
+          id: "1324",
           message: err,
           type: "ERROR",
         });
@@ -78,6 +78,7 @@ export class CardsComponent implements OnInit {
     const b = back ?? undefined
     const n = notes ?? undefined
 
+    // idk das muss ich nochmal ändern irgendwie...
     this.service.updateCard(id, f, b, n).pipe(
       switchMap(() => this.service.getCardCollectionById(col.collectionId))
     ).subscribe({
