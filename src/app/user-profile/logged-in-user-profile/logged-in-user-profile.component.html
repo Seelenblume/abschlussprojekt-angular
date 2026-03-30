@@ -3,17 +3,16 @@
       <app-profile-banner [username]="user().name"></app-profile-banner>
       <div class="switch">
         <span
-  [class.show]="!showSaved"
-  (click)="toggleShowSaved(false)">
-  Meine Sammlungen
-</span>
+          [class.show]="!showSaved"
+          (click)="toggleShowSaved(false)">
+          Meine Sammlungen
+        </span>
 
-<span
-  [class.show]="showSaved"
-  (click)="toggleShowSaved(true)">
-  Meine gespeicherten Sammlungen
-</span>
-
+        <span
+          [class.show]="showSaved"
+          (click)="toggleShowSaved(true)">
+          Meine gespeicherten Sammlungen
+        </span>
        </div>
 
       @if (showSaved) {

@@ -23,5 +23,5 @@ export class UserProfileComponent {
   user$ = this.route.paramMap.pipe(
   map(params => params.get('userId')!),
   switchMap(id => this.userService.getUserById(id)))
-   
+  
 }
