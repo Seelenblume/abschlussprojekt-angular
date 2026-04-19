@@ -1,51 +1,51 @@
 <div class="auth">
     <form [formGroup]="authForm" (ngSubmit)="onSubmit()">
         <h2>
-            Sign Up
+           Registrieren
         </h2>
         <div>
             <div class="inputGroup">
-                <label htmlFor='username'>User name</label>
+                <label htmlFor='username'>User Name</label>
                 <!-- formControlName binds each individual input to the formcontrol -->
-                <input placeholder='user name' id='username' formControlName="userName" />
+                <input placeholder='User Name eingeben...' id='username' formControlName="userName" />
                     @if (userName?.invalid && (userName?.dirty || userName?.touched)) {
                         @if (userName?.hasError('required')) {
-                            <span class="errorMessage">This field is required</span>
+                            <span class="errorMessage">Pflichtfeld</span>
                         }
                         @if (userName?.errors?.['maxlength']; as err) {
-                            <span class="errorMessage">Maximum of {{err.requiredLength}} characters</span>
+                            <span class="errorMessage">Maximal {{err.requiredLength}} Zeichen</span>
                         }
                     }
             </div>
 
             <div class="inputGroup">
                 <label htmlFor='email'>E-Mail</label>
-                <input placeholder='E-mail' id='email' formControlName="email" />
+                <input placeholder='E-Mail eingeben...' id='email' formControlName="email" />
                     @if (email?.invalid && (email?.dirty || email?.touched)) {
                         @if (email?.hasError('required')) {
-                            <span class="errorMessage">This field is required</span>
+                            <span class="errorMessage">Pflichtfeld</span>
                         }
                         @if (email?.errors?.['email']; as err) {
-                            <span class="errorMessage">Must be a valid E-Mail</span>
+                            <span class="errorMessage">Eingabe muss eine gültige E-Mail sein</span>
                         }
                     }            
             </div>
 
 
             <div class="inputGroup">
-                <label htmlFor='password'>Password</label>
-                <input placeholder='password' formControlName="password" type="password"/>
+                <label htmlFor='password'>Passwort</label>
+                <input placeholder='Passwort eingeben...' formControlName="password" type="password"/>
                     @if (password?.invalid && (password?.dirty || password?.touched)) {
                         @if (password?.hasError('required')) {
-                            <span class="errorMessage">This field is required</span>
+                            <span class="errorMessage">TPflichtfeld</span>
                         }
                          @if (password?.errors?.['maxlength']; as err) {
-                            <span class="errorMessage">Maximum of {{err.requiredLength}} characters</span>
+                            <span class="errorMessage">Maximal {{err.requiredLength}} Zeichen</span>
                         }
                     } 
             </div>
         </div>
-        <p>Already have an account?<a [routerLink]="['/sign-in']">Sign In</a></p>
-        <button type='submit'>Submit</button>
+        <p>Du hast schon ein Konto? <a [routerLink]="['/sign-in']">Hier anmelden</a></p>
+        <button type='submit'>Registrieren</button>
     </form>
 </div>
