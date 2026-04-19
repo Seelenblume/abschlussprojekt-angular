@@ -4,14 +4,14 @@ import { map, switchMap } from 'rxjs';
 import { CardCollection, CardModel } from '../../../../models/card';
 import { ToastService } from '../../../toast-notifications/toast/toast.service';
 import { CardsApiService } from '../../cards/cards-api.service';
-import { CardModalUpdateComponent } from '../card-modal-update/card-modal-update.component';
 import { CardModalComponent } from '../card-modal/card-modal.component';
 import { CardSmallComponent } from '../card-small/card-small.component';
 import { LucidePlus, LucideAngularModule, LucideSquarePen } from 'lucide-angular';
+import { CardUpdateModalComponent } from "../card-update-modal/card-update-modal.component";
 
 @Component({
   selector: 'app-cards',
-  imports: [CardModalComponent, CardSmallComponent, CardModalUpdateComponent, LucideAngularModule],
+  imports: [CardModalComponent, CardSmallComponent, LucideAngularModule, CardUpdateModalComponent],
   templateUrl: './cards.component.html',
   styleUrl: './cards.component.css'
 })
@@ -42,13 +42,13 @@ export class CardsComponent implements OnInit {
   selectedCard = signal<CardModel | null>(null)
 
   handleAddCard(front: string, back: string, notes: string) {
-
+    // console.log(card)
     const col = this.collection();
     if (!col) {
       throw new Error('Keine Collection');
     }
 
-    this.service.postCard(col.collectionId, front, back, notes).pipe(
+    this.service.postCard(col.collectionId, front, front, notes).pipe(
       switchMap(() => this.service.getCardCollectionById(col.collectionId))
     ).subscribe({
       next: (updated) => {
@@ -67,23 +67,21 @@ export class CardsComponent implements OnInit {
 
   }
 
-  async handleUpdateCard(id: string, front: string | null, back: string | null, notes: string | null) {
-    
+  async handleUpdateCard(id: string, front?: string, back?: string, notes?: string) {
+    console.log(front, back, notes)
     const col = this.collection();
     if (!col) {
       throw new Error('Keine Collection');
     }
 
-    const f = front ?? undefined
-    const b = back ?? undefined
-    const n = notes ?? undefined
-
     // idk das muss ich nochmal ändern irgendwie...
-    this.service.updateCard(id, f, b, n).pipe(
+    this.service.updateCard(id, {front, back, notes}).pipe(
       switchMap(() => this.service.getCardCollectionById(col.collectionId))
     ).subscribe({
       next: (updated) => {
         this.collection.set(updated);
+        this.showModal.set(false)
+
       },
       error: (err) => {
         this.toast.addToast({
@@ -109,4 +107,11 @@ export class CardsComponent implements OnInit {
     this.selectedCard.set(card);
     this.showModal.set(true);
 }
+}
+
+
+type CardForm = {
+  front: string
+  back: string
+  notes: string
 }

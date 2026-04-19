@@ -3,7 +3,6 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { Location } from '@angular/common';
 import { MatInputModule } from '@angular/material/input';
 import { MtxSelectModule } from '@ng-matero/extensions/select';
-import { testCategories } from '../../../test/testdata';
 import { Category } from '../../../models/category';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { LoginService } from '../../auth/login/login.service';
@@ -48,7 +47,6 @@ export class CreateCollectionComponent implements OnInit{
 
   onSubmit() {
     if (this.form.invalid) {
-      console.log(this.form.errors);
       this.form.markAllAsTouched();
       return;
     }
@@ -57,8 +55,11 @@ export class CreateCollectionComponent implements OnInit{
 
     const log = this.loginData()
     if (!log) {
-      // (idk was sonst hier)
-      // fehler toast und dann return?
+      this.toast.addToast({
+          id: uuidv4(),
+          message: 'Nicht eingeloggt!',
+          type: 'ERROR'
+        })
       return;
     }
     this.service.postCardCollection(log.userId, title, categories, "blue", desc).subscribe({
@@ -78,7 +79,6 @@ export class CreateCollectionComponent implements OnInit{
         })
       }
     })
-    console.log(this.form.value);
   }
 
   onBack() {

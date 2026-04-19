@@ -58,9 +58,11 @@ export class CardsApiService {
     back: string,
     notes: string,
   ) {
-    const array = [{front,
-        back,
-        notes}]
+    const array = [{
+      front,
+      back,
+      notes
+    }]
     return this.httpClient.post(`${this.apiUrl}/card`,
       JSON.stringify({
         collectionId,
@@ -76,18 +78,15 @@ export class CardsApiService {
   }
 
   updateCard(
-    collectionId: string,
-    front?: string,
-    back?: string,
-    notes?: string,
+    cardId: string,
+    changes: {
+      front?: string,
+      back?: string,
+      notes?: string,
+    }
   ) {
-    return this.httpClient.put(`${this.apiUrl}/card}`,
-      JSON.stringify({
-        collectionId,
-        front,
-        back,
-        notes
-      }),
+    return this.httpClient.put(`${this.apiUrl}/card`,
+      JSON.stringify({ cardId, ...changes }),
       {
         headers: new HttpHeaders({
           'Content-Type': 'application/json',
@@ -125,7 +124,7 @@ export class CardsApiService {
         }),
         headers: new HttpHeaders({
           'Content-Type': 'application/json',
-        }), 
+        }),
         withCredentials: true
       }
     )

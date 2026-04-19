@@ -2,14 +2,13 @@
     <div class="back"></div>
     <div class="addCard">
         <div class="header">
-
             <h3>Karte Aktualisieren</h3>
             <button (click)="onCloseModal()">
                 <lucide-icon [img]="lucideX"></lucide-icon>
             </button>
 
         </div>
-        <form [formGroup]="form" (ngSubmit)="onSubmit($event)">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
             <div class="actions">
                 <div class="inputGroup">
                     <label>Front</label>
@@ -22,13 +21,13 @@
                 </div>
 
                 <div>
-                    <label>Notes (optional)</label>
+                    <label>Notes</label>
                     <textarea class="textarea" formControlName="notes"></textarea>
                 </div>
             </div>
             <div>
                 <button type="submit">
-                    Hinzufügen
+                    <span>Aktualisieren</span>
                 </button>
                 <button type="button" (click)="onCloseModal()">
                     Abbrechen

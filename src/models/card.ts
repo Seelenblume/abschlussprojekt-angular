@@ -7,12 +7,9 @@ export interface CardCollection {
     title: string,
     description: string,
     categories: Category[],
-    favorite: boolean,
     cardCount: number,
-    color: typeof CollectionColor
     cards: CardModel[],
 }
-
 
 export type CardModel = {
     cardId: string,
@@ -20,8 +17,3 @@ export type CardModel = {
     back: string,
     notes: string
 }
-
-export const CollectionColor = {
-    RED: "red",
-    BLUE: "blue",
-} as const

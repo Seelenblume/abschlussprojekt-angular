@@ -2,8 +2,8 @@
     <h2>Create a Collection</h2>
       <form [formGroup]="form" (ngSubmit)="onSubmit()">
         <div class="inputGroup">
-          <label htmlFor='title'>Title of your collection</label>
-          <input id='title' formControlName="title" placeholder='Enter Title...' class="inputLocal" />
+          <label htmlFor='title'>Titel</label>
+          <input id='title' formControlName="title" placeholder='Gib einen Titel ein...' class="inputLocal" />
            @if (title?.invalid && (title?.dirty || title?.touched)) {
                 @if (title?.hasError('required')) {
                     <span class="errorMessage">This field is required</span>
@@ -34,19 +34,19 @@
           -->
             <mat-form-field>
                 <mat-label>Kategorie wählen</mat-label>
-                <!-- https://ng-matero.github.io/extensions/components/select/overview -->
-
-                <!-- bind value muss leer sein, damit das ganze objekt gegeben wird -->
                     <mtx-select
                           formControlName="categories"
+                          searchable
                           [items]="categories"
                           bindLabel="label"
                           bindValue=""
                           [multiple]="true"
                           appendTo="app-create-collection"
-                          [maxSelectedItems]="3"
                       ></mtx-select>
 
+                <!-- https://ng-matero.github.io/extensions/components/select/overview -->
+
+                <!-- bind value muss leer sein, damit das ganze objekt gegeben wird -->
                   <!-- <mtx-select
                           [items]="categories"
                           bindLabel="name"

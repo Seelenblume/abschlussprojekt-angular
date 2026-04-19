@@ -1,4 +1,4 @@
-import { Component, input, output } from '@angular/core';
+import { Component, input, OnInit, output } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { LucideAngularModule, LucideX } from 'lucide-angular';
 
@@ -9,50 +9,33 @@ import { LucideAngularModule, LucideX } from 'lucide-angular';
   styleUrl: './card-modal.component.css'
 })
 export class CardModalComponent {
+  closeModal = output<boolean>();
+  addCard = output<CardForm>();
 
   form = new FormGroup({
-    front: new FormControl<string>("", { nonNullable: true, validators: [Validators.required]}),
-    back: new FormControl<string>("", { nonNullable: true, validators: [Validators.required]}),
-    notes: new FormControl<string>("", { nonNullable: true, validators: [Validators.required]}),
+    front: new FormControl("", { nonNullable: true, validators: [Validators.required] }),
+    back: new FormControl("", { nonNullable: true, validators: [Validators.required] }),
+    notes: new FormControl("", { nonNullable: true, validators: [Validators.required] }),
   })
 
   lucideX = LucideX
-
-  closeModal = output<boolean>()
-  addCard = output<CardForm>()
 
   onCloseModal() {
     this.closeModal.emit(false)
   }
 
-  onSubmit(event: Event) {
-    event.preventDefault()
+  onSubmit() {
     if (this.form.invalid) {
-      console.log(this.form.getRawValue())
-      this.form.markAllAsTouched()
-      console.log("invalid")
+      this.form.markAllAsTouched();
       return;
     }
 
-    console.log("submit");
-    this.addCard.emit(this.form.getRawValue())
-  }
-
-    get front() {
-    return this.form.get("front")
-  }
-
-  get back() {
-    return this.form.get("back")
-  }
-
-  get notes() {
-    return this.form.get("notes")
+    this.addCard.emit(this.form.getRawValue());
   }
 }
 
 type CardForm = {
-  front: string
-  back: string
-  notes: string
+  front: string;
+  back: string;
+  notes: string;
 }

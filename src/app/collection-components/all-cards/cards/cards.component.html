@@ -3,13 +3,13 @@
 </button>
 @if (showModal()) {
   @if (selectedCard(); as selected) {
-    <app-card-modal-update 
-      (closeModal)="showModal.set(false)" 
-      (addCard)="handleUpdateCard(selected.cardId, $event.front, $event.back, $event.notes)">
-    </app-card-modal-update>
+     <app-card-update-modal
+      (closeModal)="showModal.set($event)" 
+        (updateCard)="handleUpdateCard(selected.cardId, $event.front, $event.back, $event.notes)"
+     ></app-card-update-modal>
   } @else {
     <app-card-modal 
-      (closeModal)="showModal.set(false)" 
+      (closeModal)="showModal.set($event)" 
       (addCard)="handleAddCard($event.front, $event.back, $event.notes)">
     </app-card-modal>
   }
