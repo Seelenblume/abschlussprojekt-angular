@@ -19,13 +19,15 @@
         @if (savedCollections && savedCollections.length !== 0) {
             <app-collection-grid [collections]="savedCollections" ></app-collection-grid>
         } @else {
-            <p>Keine Sammlungen gespeichert</p>
+            <p>Keine Sammlungen gespeichert.</p>
         }
       } @else {
         @if (user().collections; as col) {
+          @if (col.length !== 0) {
             <app-collection-grid [collections]="col" ></app-collection-grid>
-        } @else {
-            <p>Noch keine eigenen Sammlungen</p>
+          } @else {
+            <p>Noch keine eigenen Sammlungen.</p>
+        }  
         }
       }
     </div>

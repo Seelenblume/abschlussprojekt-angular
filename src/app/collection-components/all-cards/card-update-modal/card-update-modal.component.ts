@@ -39,4 +39,16 @@ export class CardUpdateModalComponent {
     const raw = this.form.getRawValue();
     this.updateCard.emit(raw);
   }
+
+  get front() {
+    return this.form.get("front")
+  }
+  
+  get back() {
+    return this.form.get("back")
+  }
+
+  get notes() {
+    return this.form.get("notes")
+  }
 }

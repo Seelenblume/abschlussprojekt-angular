@@ -27,11 +27,11 @@ export class LoggedInUserProfileComponent implements OnInit{
         this.savedCollections = value
       },
       error: (error) => {
-        this.toast.addToast({
-          id: uuidv4(),
-          message: (error as Error).message,
-          type: 'SUCCESS'
-        })
+        // this.toast.addToast({
+        //   id: uuidv4(),
+        //   message: (error as Error).message,
+        //   type: 'SUCCESS'
+        // })
       }
     })
   }

@@ -9,6 +9,7 @@ import { LucideAngularModule, LucideBookmark, LucideLibraryBig } from 'lucide-an
 import { ToastService } from '../../toast-notifications/toast/toast.service';
 import { CategoryTagComponent } from "../category-components/category-tag/category-tag.component";
 import { toSignal } from '@angular/core/rxjs-interop';
+import { v4 as uuidv4 } from 'uuid';
 
 @Component({
   selector: 'app-collection',
@@ -36,7 +37,7 @@ export class CollectionComponent {
   // wandelt observable in ein signal um
   collection = toSignal(
     this.route.paramMap.pipe(
-      map(params => params.get('collectionId')!),
+      map(params => params.get("collectionId")!),
       switchMap(id => this.service.getCardCollectionById(id))
     ),
     { initialValue: null }
@@ -57,20 +58,20 @@ export class CollectionComponent {
   apiObservable$.subscribe({
     next: () => {
       this.toast.addToast({
-        id: '',
+        id: uuidv4(),
         message: this.bookmark()
-          ? 'Bookmark entfernt'
-          : 'Bookmark hinzugefügt',
-        type: 'SUCCESS'
+          ? "Entfernt!"
+          : "Gespeichert!",
+        type: "SUCCESS"
       });
 
       this.bookmark.update(value => !value);
     },
     error: () => {
       this.toast.addToast({
-        id: '',
-        message: 'Fehler beim Bookmark',
-        type: 'ERROR'
+        id: uuidv4(),
+        message: "Etwas ist schief gelaufen!",
+        type: "ERROR"
       });
     }
   });

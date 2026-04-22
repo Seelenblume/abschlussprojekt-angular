@@ -32,8 +32,5 @@ export class CollectionsComponent {
     }
     return of([]);
   })
-);
-
-        // ????????
-    
+);  
 }

@@ -20,11 +20,6 @@ export class AppComponent implements OnInit{
         console.log(user)
       },
       error: () => {
-        this.toast.addToast({
-          id: "136",
-          message: "Something",
-          type: "ERROR",
-        })
       }
     })
   }

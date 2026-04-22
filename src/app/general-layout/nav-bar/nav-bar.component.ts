@@ -5,6 +5,7 @@ import { LucideSearch, LucideAngularModule, LucidePlus } from 'lucide-angular';
 import { LoginService } from '../../auth/login/login.service';
 import { ToastService } from '../../toast-notifications/toast/toast.service';
 import { CategoryListComponent } from '../../collection-components/category-components/category-list/category-list.component';
+import { v4 as uuidv4 } from 'uuid';
 
 @Component({
   selector: 'app-nav-bar',
@@ -25,17 +26,17 @@ export class NavBarComponent {
     this.loginService.logout().subscribe({
       next: () => {
         this.router.navigateByUrl("/")
-        this.toast.addToast({
-          id: '',
-          message: "Signed out!",
-          type: 'SUCCESS'
-        })
+        this.toast. addToast({
+                id: uuidv4(),
+                message: "Abgemeldet!",
+                type: "SUCCESS",
+            })
       }, 
       error: () => {
-      this.toast.addToast({
-          id: '',
-          message: "Signed out!",
-          type: 'ERROR'
+      this.toast. addToast({
+            id: uuidv4(),
+            message: "Abmeldung fehlgeschlagen!",
+            type: "ERROR",
         })
       }
     })

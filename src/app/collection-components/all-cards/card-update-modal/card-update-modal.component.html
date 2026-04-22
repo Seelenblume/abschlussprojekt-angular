@@ -11,18 +11,18 @@
         <form [formGroup]="form" (ngSubmit)="onSubmit()">
             <div class="actions">
                 <div class="inputGroup">
-                    <label>Front</label>
-                    <input type="text" formControlName="front" />
+                    <label>Vorderseite</label>
+                    <input type="text" formControlName="front" placeholder="Inhalt eingeben..."/>
                 </div>
 
                 <div class="inputGroup">
-                    <label>Back</label>
-                    <input type="text" formControlName="back" />
+                    <label>Rückseite</label>
+                    <input type="text" formControlName="back" placeholder="Inhalt eingeben..."/>
                 </div>
 
                 <div>
-                    <label>Notes</label>
-                    <textarea class="textarea" formControlName="notes"></textarea>
+                    <label>Notizen</label>
+                    <textarea class="textarea" formControlName="notes" placeholder="Notizen eingeben..."></textarea>
                 </div>
             </div>
             <div>

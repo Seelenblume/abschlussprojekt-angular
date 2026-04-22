@@ -1,7 +1,7 @@
 <header class="header">
             <nav class="nav">
                 <a routerLink="/">
-                    <img src="/logo.png" alt='logo' />
+                    <p>Studylet</p>
                 </a>
                 <app-category-list></app-category-list>
                 <app-search-bar/>
@@ -17,16 +17,17 @@
                             Erstellen
                         </a>
                     }
+                    @if (loginInfo(); as loginData) {
+                        <a [routerLink]="['/user', loginData.userId]"><p>Mein Konto</p></a>
+                    }
                    
                     @if (loginInfo()) {
-                        <p (click)="signOut()">Sign Out</p>
+                        <p (click)="signOut()">Abmelden</p>
                     } @else {
-                        <a routerLink="/sign-in"><p>Sign In</p></a>
+                        <a routerLink="/sign-up"><p>Registrieren</p></a>
                     }
 
-                    @if (loginInfo(); as loginData) {
-                        <a [routerLink]="['/user', loginData.userId]"><p>My Account</p></a>
-                    }
+                    
                 </div>
             </nav>
         </header>

@@ -41,7 +41,7 @@ export class CreateCollectionComponent implements OnInit{
 
   form = new FormGroup({
     title: new FormControl<string>("", { nonNullable: true, validators: [Validators.required, Validators.maxLength(20)]}),
-    desc: new FormControl<string>("", { nonNullable: true, validators: [Validators.required, Validators.maxLength(200)]}),
+    desc: new FormControl<string>("", { nonNullable: true, validators: [Validators.maxLength(200)]}),
     categories: new FormControl<Category[]>([], { nonNullable: true, })
   })
 
@@ -57,7 +57,7 @@ export class CreateCollectionComponent implements OnInit{
     if (!log) {
       this.toast.addToast({
           id: uuidv4(),
-          message: 'Nicht eingeloggt!',
+          message: 'Nicht angemeldet!',
           type: 'ERROR'
         })
       return;
@@ -66,7 +66,7 @@ export class CreateCollectionComponent implements OnInit{
       next: (value) => {
         this.toast.addToast({
           id: uuidv4(),
-          message: '',
+          message: "Sammlung erstellt!",
           type: 'SUCCESS'
         })
         this.router.navigateByUrl(`/collection/${value.collectionId}`)
@@ -74,7 +74,7 @@ export class CreateCollectionComponent implements OnInit{
       error: (error) => {
         this.toast.addToast({
           id: uuidv4(),
-          message: (error as Error).message,
+          message: "Fehler beim Erstellen der Sammlung.",
           type: 'ERROR'
         })
       }

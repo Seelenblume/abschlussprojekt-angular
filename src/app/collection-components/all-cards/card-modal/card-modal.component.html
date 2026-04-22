@@ -11,18 +11,33 @@
         <form [formGroup]="form" (ngSubmit)="onSubmit()">
             <div class="actions">
                 <div class="inputGroup">
-                    <label>Front</label>
-                    <input type="text" formControlName="front" />
+                    <label>Vorderseite</label>
+                    <input type="text" formControlName="front" placeholder="Inhalt eingeben..."/>
+                    @if (front?.invalid && (front?.dirty || front?.touched)) {
+                        @if (front?.hasError('required')) {
+                            <span class="errorMessage">Pflichtfeld</span>
+                        }
+                    }     
                 </div>
 
                 <div class="inputGroup">
-                    <label>Back</label>
-                    <input type="text" formControlName="back" />
+                    <label>Rückseite</label>
+                    <input type="text" formControlName="back" placeholder="Inhalt eingeben..."/>
+                    @if (back?.invalid && (back?.dirty || back?.touched)) {
+                        @if (back?.hasError('required')) {
+                            <span class="errorMessage">Pflichtfeld</span>
+                        }
+                    }  
                 </div>
 
                 <div>
-                    <label>Notes</label>
-                    <textarea class="textarea" formControlName="notes"></textarea>
+                    <label>Notizen</label>
+                    <textarea class="textarea" formControlName="notes" placeholder="Notizen eingeben..."></textarea>
+                    @if (notes?.invalid && (notes?.dirty || notes?.touched)) {
+                        @if (notes?.hasError('required')) {
+                            <span class="errorMessage">Pflichtfeld</span>
+                        }
+                    }  
                 </div>
             </div>
             <div>

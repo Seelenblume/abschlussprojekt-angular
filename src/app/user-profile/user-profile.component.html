@@ -1,20 +1,20 @@
 
 @if (user$ | async; as user) {
-    @if (loginInfo(); as loginData) {
-        @if (loginData.userId === user.userId) {
+    @if (loginInfo(); as loginData) { 
+        @if (loginData.userId == user.userId) {
             <app-logged-in-user-profile [user]="user" ></app-logged-in-user-profile>
-        }
-    } @else {
-        <div class="profile">
+        } @else {
+            <div class="profile">
             <app-profile-banner [username]="user.name"></app-profile-banner>
             <div class="collections">
                 <h2>Sammlungen</h2>
                 @if (user.collections && user.collections.length !== 0) {
                     <app-collection-grid [collections]="user.collections"></app-collection-grid>
                 } @else {
-                    <p>Dieser User hat keine Sammlungen</p>
+                    <p>Dieser User hat keine Sammlungen.</p>
                 }
             </div>
-        </div>
+            </div>
+        }
     }
 }

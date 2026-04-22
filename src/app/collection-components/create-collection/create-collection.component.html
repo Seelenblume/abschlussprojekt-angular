@@ -3,37 +3,35 @@
       <form [formGroup]="form" (ngSubmit)="onSubmit()">
         <div class="inputGroup">
           <label htmlFor='title'>Titel</label>
-          <input id='title' formControlName="title" placeholder='Gib einen Titel ein...' class="inputLocal" />
+          <input id='title' formControlName="title" placeholder='Titel eingeben...' class="inputLocal" />
            @if (title?.invalid && (title?.dirty || title?.touched)) {
                 @if (title?.hasError('required')) {
-                    <span class="errorMessage">This field is required</span>
+                    <span class="errorMessage">Pflichtfeld</span>
                 }
                     @if (title?.errors?.['maxlength']; as err) {
-                      <span class="errorMessage">Maximum of {{err.requiredLength}} characters</span>
+                      <span class="errorMessage">Maximal {{err.requiredLength}} Zeichen</span>
                 }
             } 
         </div>
         <div class="inputGroup">
-          <label htmlFor='desc'>Description</label>
-          <textarea id='desc' formControlName="desc" class="textarea"></textarea>
-                    <!-- hier überarbeiten idk mehr wie -->
-
+          <label htmlFor='desc'>Beschreibung</label>
+          <textarea id='desc' formControlName="desc" class="textarea" placeholder="Beschreibung eingeben..."></textarea>
              @if (desc?.invalid && (desc?.dirty || desc?.touched)) {
                     @if (desc?.errors?.['maxlength']; as err) {
-                    <span class="errorMessage">Maximum of {{err.requiredLength}} characters</span>
+                    <span class="errorMessage">Maximal {{err.requiredLength}} Zeichen</span>
                 }
             }
 
         </div>
 
         <div class="inputGroup">
-          <label htmlFor='category'>Categories</label>
+          <label htmlFor='category'>Kategorien auswählen</label>
           <!-- multiselect only possible with ui library,
                 angular team provides material ui, which can be installed via angular cli
                 but multiselect is not provided, I used different library      
           -->
             <mat-form-field>
-                <mat-label>Kategorie wählen</mat-label>
+                <mat-label>Suche nach Kategorien...</mat-label>
                     <mtx-select
                           formControlName="categories"
                           searchable

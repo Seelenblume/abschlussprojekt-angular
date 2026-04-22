@@ -1,6 +1,6 @@
 import { Component, input } from '@angular/core';
 import { CardCollection } from '../../../models/card';
-import { LucideAngularModule, LucideLibraryBig } from 'lucide-angular';
+import { LucideAngularModule, LucideLibrary } from 'lucide-angular';
 import { RouterLink } from "@angular/router";
 
 @Component({
@@ -13,5 +13,5 @@ import { RouterLink } from "@angular/router";
 export class CollectionCompactComponent {
   collection = input.required<CardCollection>()
 
-  LucideLibraryBig = LucideLibraryBig;
+  LucideLibrary = LucideLibrary;
 }

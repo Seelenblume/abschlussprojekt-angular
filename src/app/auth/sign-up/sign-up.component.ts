@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angula
 import { Router, RouterLink } from "@angular/router";
 import { LoginService } from '../login/login.service';
 import { ToastService } from '../../toast-notifications/toast/toast.service';
+import { v4 as uuidv4 } from 'uuid';
 
 @Component({
   selector: 'app-sign-up',
@@ -40,14 +41,14 @@ export class SignUpComponent {
       next: (user) => {
         this.router.navigateByUrl(`/user/${user.userId}`)
         this.toast.addToast({
-        id: '',
-        message: 'Signed In!',
-        type: 'SUCCESS'
-      })},
+            id: uuidv4(),
+            message: 'Angemeldet!',
+            type: 'SUCCESS'
+        })},
       error: (err) => this.toast.addToast({
-        id: '',
-        message: (err as Error).message,
-        type: 'ERROR'
+          id: uuidv4(),
+          message: "Registrierung fehlgeschlagen!",
+          type: "ERROR",
       })
     });
   }

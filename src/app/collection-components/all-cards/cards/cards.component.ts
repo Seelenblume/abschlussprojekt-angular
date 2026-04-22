@@ -8,6 +8,7 @@ import { CardModalComponent } from '../card-modal/card-modal.component';
 import { CardSmallComponent } from '../card-small/card-small.component';
 import { LucidePlus, LucideAngularModule, LucideSquarePen } from 'lucide-angular';
 import { CardUpdateModalComponent } from "../card-update-modal/card-update-modal.component";
+import { v4 as uuidv4 } from 'uuid';
 
 @Component({
   selector: 'app-cards',
@@ -45,7 +46,12 @@ export class CardsComponent implements OnInit {
     // console.log(card)
     const col = this.collection();
     if (!col) {
-      throw new Error('Keine Collection');
+      this.toast.addToast({
+        id: uuidv4(),
+        message: "Hinzufügen fehlgeschlagen!",
+        type: "ERROR",
+      })
+      return
     }
 
     this.service.postCard(col.collectionId, front, front, notes).pipe(
@@ -57,10 +63,10 @@ export class CardsComponent implements OnInit {
       },
       error: (err) => {
         this.toast.addToast({
-          id: "1324",
-          message: err,
+          id: uuidv4(),
+          message: "Hinzufügen fehlgeschlagen!",
           type: "ERROR",
-        });
+        })
       }
     });
 
@@ -71,11 +77,15 @@ export class CardsComponent implements OnInit {
     console.log(front, back, notes)
     const col = this.collection();
     if (!col) {
-      throw new Error('Keine Collection');
+      this.toast.addToast({
+        id: uuidv4(),
+        message: "Aktualisieren fehlgeschlagen!",
+        type: "ERROR",
+      })
+      return
     }
 
-    // idk das muss ich nochmal ändern irgendwie...
-    this.service.updateCard(id, {front, back, notes}).pipe(
+    this.service.updateCard(id, { front, back, notes }).pipe(
       switchMap(() => this.service.getCardCollectionById(col.collectionId))
     ).subscribe({
       next: (updated) => {
@@ -85,10 +95,10 @@ export class CardsComponent implements OnInit {
       },
       error: (err) => {
         this.toast.addToast({
-          id: "qwetrz",
-          message: err,
+          id: uuidv4(),
+          message: "Aktualisieren fehlgeschlagen!",
           type: "ERROR",
-        });
+        })
       }
     });
 
@@ -106,7 +116,7 @@ export class CardsComponent implements OnInit {
   onEdit(card: CardModel) {
     this.selectedCard.set(card);
     this.showModal.set(true);
-}
+  }
 }
 
 

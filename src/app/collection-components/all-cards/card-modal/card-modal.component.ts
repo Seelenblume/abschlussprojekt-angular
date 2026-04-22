@@ -32,7 +32,22 @@ export class CardModalComponent {
 
     this.addCard.emit(this.form.getRawValue());
   }
+
+  get front() {
+    return this.form.get("front")
+  }
+  
+  get back() {
+    return this.form.get("back")
+  }
+
+  get notes() {
+    return this.form.get("notes")
+  }
 }
+
+
+
 
 type CardForm = {
   front: string;

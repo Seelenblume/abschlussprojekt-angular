@@ -11,10 +11,14 @@
         </div>
         @if (loginInfo(); as loginData) {
             @if (loginData.userId === collection.user.userId) {
-                <a [routerLink]="[`/collection/${collection.collectionId}/cards`]" class="allCards">
+                @if (collection.cards.length !== 0) {
+                    <a [routerLink]="[`/collection/${collection.collectionId}/cards`]" class="allCards">
                     <p>Alle Karten ansehen</p>
                     <lucide-icon [img]="lucideLibraryBig"></lucide-icon>
                 </a>
+                } @else {
+                    <p>Diese Sammlung hat noch keine Karten.</p>
+                }
             }
         }
      </div>
@@ -27,17 +31,22 @@
     <app-carousel [collection]="collection"></app-carousel>
     <div class="info">
          <div class="profile">
-            <h3>Creator</h3>
+            <h3>Ersteller</h3>
             <div class="name">
-                <img src="../src/assets/react.svg" />
+                <img src="profile_pic.svg" />
                 <a [routerLink]="['/user', collection.user.userId]">{{collection.user.name}}</a>
             </div>
         </div>
-        <div class="desc">
-            {{collection.description}}
-        </div>
+        @if (collection.description) {
+            <div class="desc">
+                <p>{{collection.description}}</p>
+            </div>
+        } @else {
+            <div class="desc">
+                <p>Diese Sammlung hat keine Beschreibung.</p>
+            </div>
+        }
+        
        
     </div>
-} @else {
-    <p>Loading...</p>
 }

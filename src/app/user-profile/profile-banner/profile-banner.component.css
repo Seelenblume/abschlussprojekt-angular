@@ -8,6 +8,10 @@
         position: absolute;
         bottom: 1rem;
         left: 1rem;
+        display: flex;
+        justify-content: left;
+        align-items: center;
+        gap: 1rem;
     }
 
     .gradient {
