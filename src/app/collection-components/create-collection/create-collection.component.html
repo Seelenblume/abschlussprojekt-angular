@@ -26,10 +26,6 @@
 
         <div class="inputGroup">
           <label htmlFor='category'>Kategorien auswählen</label>
-          <!-- multiselect only possible with ui library,
-                angular team provides material ui, which can be installed via angular cli
-                but multiselect is not provided, I used different library      
-          -->
             <mat-form-field>
                 <mat-label>Suche nach Kategorien...</mat-label>
                     <mtx-select
@@ -41,23 +37,6 @@
                           [multiple]="true"
                           appendTo="app-create-collection"
                       ></mtx-select>
-
-                <!-- https://ng-matero.github.io/extensions/components/select/overview -->
-
-                <!-- bind value muss leer sein, damit das ganze objekt gegeben wird -->
-                  <!-- <mtx-select
-                          [items]="categories"
-                          bindLabel="name"
-                          bindValue="id"
-                          [multiple]="true"
-                          [(ngModel)]="food"
-                          appendTo="app-select-overview"
-                      ></mtx-select> -->
-
-                    
-
-                      <!-- <mat-hint>Choose your favorite food</mat-hint>
-                      <mat-error>Please choose a food</mat-error> -->
         </mat-form-field>
         </div>
 
