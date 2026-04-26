@@ -53,7 +53,7 @@ export class CardsComponent implements OnInit {
       return
     }
 
-    this.service.postCard(col.collectionId, front, front, notes).pipe(
+    this.service.postCard(col.collectionId, front, back, notes).pipe(
       switchMap(() => this.service.getCardCollectionById(col.collectionId))
     ).subscribe({
       next: (updated) => {
