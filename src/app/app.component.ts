@@ -17,7 +17,6 @@ export class AppComponent implements OnInit{
   ngOnInit(): void {
     this.loginService.getLogin().subscribe({
       next: (user) => {
-        console.log(user)
       },
       error: () => {
       }

@@ -17,7 +17,6 @@ export class SearchBarComponent {
 
   onSubmit() {
     if (this.query) {
-      console.log(this.query)
       this.router.navigateByUrl(`/collections?query=${this.query}`)
     }
   }

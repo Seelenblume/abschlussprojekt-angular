@@ -47,9 +47,6 @@ export class SignInComponent {
           type: "ERROR",
       })
     });
-     
-    console.log(this.authForm.value);
-
   }
 
   get userName() {

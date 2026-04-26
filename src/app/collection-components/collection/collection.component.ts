@@ -18,16 +18,9 @@ import { v4 as uuidv4 } from 'uuid';
   styleUrl: './collection.component.css'
 })
 export class CollectionComponent {
-  // collection: CardCollection | null = null
-
-  // Hier muss ich irgendwie auf route parameter zugreifen
-
-  // collectionId: string | null;
-
   lucideBookmark = LucideBookmark
   lucideLibraryBig = LucideLibraryBig
   bookmark = signal(false)
-  // collection$: Observable<CardCollection> | undefined;
   private service = inject(CardsApiService)
   private route = inject(ActivatedRoute)
   private loginService = inject(LoginService)

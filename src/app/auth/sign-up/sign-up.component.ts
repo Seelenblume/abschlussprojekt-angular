@@ -28,13 +28,9 @@ export class SignUpComponent {
 
   onSubmit() {
     if (this.authForm.invalid) {
-      console.log(this.authForm.errors);
-
       this.authForm.markAllAsTouched();
       return;
     }
-    console.log(this.authForm.value);
-
     const { userName, email, password } = this.authForm.getRawValue();
 
     this.loginService.signUp(userName, email, password).subscribe({

@@ -29,5 +29,5 @@ export const routes: Routes = [
 ];
 
 
-      // Angular resolves routes "first match" -> we have to use children
-      // order has to be generic -> specific
+// Angular resolves routes "first match" -> we have to use children
+// order has to be generic -> specific

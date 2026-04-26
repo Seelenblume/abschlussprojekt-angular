@@ -43,7 +43,6 @@ export class CardsComponent implements OnInit {
   selectedCard = signal<CardModel | null>(null)
 
   handleAddCard(front: string, back: string, notes: string) {
-    // console.log(card)
     const col = this.collection();
     if (!col) {
       this.toast.addToast({
@@ -74,7 +73,6 @@ export class CardsComponent implements OnInit {
   }
 
   async handleUpdateCard(id: string, front?: string, back?: string, notes?: string) {
-    console.log(front, back, notes)
     const col = this.collection();
     if (!col) {
       this.toast.addToast({
