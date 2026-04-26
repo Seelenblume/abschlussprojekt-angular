@@ -1,5 +1,4 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { MtxSelect } from "@ng-matero/extensions/select";
 import { Category } from '../../../../models/category';
 import { CategoryService } from '../category/category.service';
 import {MatMenuModule} from '@angular/material/menu';

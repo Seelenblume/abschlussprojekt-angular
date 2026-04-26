@@ -1,8 +1,7 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { map, of, switchMap } from 'rxjs';
 import { CardsApiService } from '../cards/cards-api.service';
-import { CardCollection } from '../../../models/card';
 import { CollectionGridComponent } from "../../home-page/collection-grid/collection-grid.component";
 import { AsyncPipe } from '@angular/common';
 

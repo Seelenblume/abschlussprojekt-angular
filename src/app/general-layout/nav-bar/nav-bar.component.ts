@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { Router, RouterLink } from "@angular/router";
 import { SearchBarComponent } from '../search-bar/search-bar.component';
-import { LucideSearch, LucideAngularModule, LucidePlus } from 'lucide-angular';
+import { LucideAngularModule, LucidePlus } from 'lucide-angular';
 import { LoginService } from '../../auth/login/login.service';
 import { ToastService } from '../../toast-notifications/toast/toast.service';
 import { CategoryListComponent } from '../../collection-components/category-components/category-list/category-list.component';
